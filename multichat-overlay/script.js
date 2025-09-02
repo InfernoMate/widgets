@@ -1,5 +1,5 @@
 /////////////
-// Credits // Test for Cloudflare
+// Credits //
 /////////////
 
 // Credits / Danksagung:
