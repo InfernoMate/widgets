@@ -58,7 +58,7 @@ const opacity = urlParams.get("opacity") || "0";
 
 const hideAfter = GetIntParam("hideAfter", 0);
 const excludeCommands = GetBooleanParam("excludeCommands", true);
-const ignoreChatters = urlParams.get("ignoreChatters") || "Sery_Bot,KofiStreamBot,pierreliusmaximusbot,Nightbot,Fossabot,InfernoMateBot,WizeBot";
+const ignoreChatters = urlParams.get("ignoreChatters") || "";
 const scrollDirection = GetIntParam("scrollDirection", 1);
 const groupConsecutiveMessages = GetBooleanParam("groupConsecutiveMessages", false);
 const inlineChat = GetBooleanParam("inlineChat", false);
