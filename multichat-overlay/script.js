@@ -74,7 +74,7 @@ const showTwitchRaids = GetBooleanParam("showTwitchRaids", true);
 const showTwitchSharedChat = GetIntParam("showTwitchSharedChat", 2);
 
 const enableKickSupport = GetBooleanParam("enableKickSupport", false);
-const kickUsername = urlParams.get("kickUsername") || "";
+let kickUsername = urlParams.get("kickUsername") || "";
 const showKickMessages = GetBooleanParam("showKickMessages", true);
 const showKickFollows = GetBooleanParam("showKickFollows", true);
 const showKickSubs = GetBooleanParam("showKickSubs", true);
