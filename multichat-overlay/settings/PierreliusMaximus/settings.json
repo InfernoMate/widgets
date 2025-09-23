@@ -447,7 +447,7 @@
         },
         {
             "id": "showStreamElementsTips",
-            "label": "StreamElements-Trinkgelder",
+            "label": "StreamElements-Spenden",
             "description": "<a href=\"https://docs.streamer.bot/guide/integrations/streamelements\" target=\"_blank\">Klicken zum Verbinden</a>",
             "type": "checkbox",
             "defaultValue": false,
@@ -463,7 +463,7 @@
         },
         {
             "id": "showKofiDonations",
-            "label": "Ko-fi-Spenden",
+            "label": "Ko-fi-Benachrichtigungen",
             "description": "<a href=\"https://docs.streamer.bot/guide/integrations/ko-fi\" target=\"_blank\">Klicken zum Verbinden</a>",
             "type": "checkbox",
             "defaultValue": false,

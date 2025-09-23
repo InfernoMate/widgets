@@ -447,10 +447,10 @@
         },
         {
             "id": "showStreamElementsTips",
-            "label": "StreamElements-Trinkgelder",
+            "label": "StreamElements-Spenden",
             "description": "<a href=\"https://docs.streamer.bot/guide/integrations/streamelements\" target=\"_blank\">Klicken zum Verbinden</a>",
             "type": "checkbox",
-            "defaultValue": true,
+            "defaultValue": false,
             "group": "Welche Spendennachrichten möchtest du sehen?"
         },
         {
@@ -458,15 +458,15 @@
             "label": "Patreon-Mitgliedschaften",
             "description": "<a href=\"https://docs.streamer.bot/guide/integrations/patreon\" target=\"_blank\">Klicken zum Verbinden</a>",
             "type": "checkbox",
-            "defaultValue": true,
+            "defaultValue": false,
             "group": "Welche Spendennachrichten möchtest du sehen?"
         },
         {
             "id": "showKofiDonations",
-            "label": "Ko-fi-Spenden",
+            "label": "Ko-fi-Benachrichtigungen",
             "description": "<a href=\"https://docs.streamer.bot/guide/integrations/ko-fi\" target=\"_blank\">Klicken zum Verbinden</a>",
             "type": "checkbox",
-            "defaultValue": true,
+            "defaultValue": false,
             "group": "Welche Spendennachrichten möchtest du sehen?"
         },
         {
@@ -474,7 +474,7 @@
             "label": "TipeeeStream-Spenden",
             "description": "<a href=\"https://docs.streamer.bot/guide/integrations/tipeee-stream\" target=\"_blank\">Klicken zum Verbinden</a>",
             "type": "checkbox",
-            "defaultValue": true,
+            "defaultValue": false,
             "group": "Welche Spendennachrichten möchtest du sehen?"
         },
         {
