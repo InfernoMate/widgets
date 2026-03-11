@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!-- TEST
+Credits / Danksagung:
+Die Grundlage dieses Codes basiert auf den Arbeiten von nutty.
+Website: https://nutty.gg
+Twitch: https://www.twitch.tv/nutty
+YouTube: https://www.youtube.com/@nuttylmao
+GitHub: https://github.com/nuttylmao
+
+Credits / Acknowledgement:
+The foundation of this code is based on the work of nutty.
+Website: https://nutty.gg
+Twitch: https://www.twitch.tv/nutty
+YouTube: https://www.youtube.com/@nuttylmao
+GitHub: https://github.com/nuttylmao
+-->
+<html lang="de">
+
+<head>
+    <link rel="stylesheet" href="../../../.common/styles/global.css" />
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+
+    <!-- Update All Button -->
+    <button onclick="OpenUpdateAllDialog()">
+        <img src="https://api.iconify.design/material-symbols:edit-square-outline.svg?color=%23ffffff"> Alle updaten
+    </button>
+
+    <div style="display: flex; flex-direction: column; gap: 0.5em;">
+        <!-- List of all broadcasts -->
+        <div id="broadcast-list">
+        </div>
+
+        <!-- YouTube warning -->
+        <div id="youtube-warning" class="broadcast">
+            <img class="platform-icon" id="platform-icon" src="icons/platforms/youtube.png" />
+
+            <div class="broadcast-info">
+                <label class="setting-attribute">
+                    <i>Der YouTube Stream kann nur bearbeitet werden, wenn du live bist</i>
+                </label>
+            </div>
+
+            <div id="broadcast-buttons">
+                <button id="broadcast-dashboard-button" class="icon-button" title="Dashboard"><img class="button-icon"
+                        src="https://api.iconify.design/gridicons:popout.svg?color=%23ffffff"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blur Layer -->
+    <div id="blur-layer" class="blur"></div>
+
+    <!-- Update All Popup -->
+    <div id="update-all-dialog" class="dialog">
+        <button class="dialog-nav-button" onclick="CloseUpdateAllDialog()">×</button>
+
+        <label class="title" style="text-align: center;">Stream Info</label>
+
+        <div class="field">
+            <div style="display: flex; flex-direction: row; align-items: end; gap: 1em;">
+                <label>Titel</label>
+                <div id="all-title-char-limit" class="char-limit">
+                    <span id="all-title-char-count"></span>/<span id="all-title-char-max"></span>
+                </div>
+            </div>
+            <input type="text" id="all-title-input" placeholder="Leer lassen um aktuellen Titel zu behalten">
+        </div>
+
+        <div class="field">
+            <label>Kategorie</label>
+            <input type="text" id="all-category-input" placeholder="Leer lassen um aktuelle Kategorie zu behalten">
+        </div>
+
+        <button id="all-submit-button" onclick="UpdateAllSubmit()">Alle updaten</button>
+    </div>
+
+    <!-- Update Twitch Popup -->
+    <div id="update-twitch-dialog" class="dialog">
+        <button class="dialog-nav-button" onclick="CloseUpdateTwitchDialog()">×</button>
+
+        <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 1em;">
+            <img src="icons/platforms/twitch.png" class="platform-icon">
+            <label class="title" style="text-align: center;">Stream Info</label>
+        </div>
+
+        <div class="field">
+            <div style="display: flex; flex-direction: row; align-items: end; gap: 1em;">
+                <label>Titel</label>
+                <div id="twitch-title-char-limit" class="char-limit">
+                    <span id="twitch-title-char-count"></span>/<span id="twitch-title-char-max"></span>
+                </div>
+            </div>
+            <input type="text" id="twitch-title-input" placeholder="Leer lassen um aktuellen Titel zu behalten">
+        </div>
+
+        <div class="field">
+            <label>Kategorie</label>
+            <input type="text" id="twitch-category-input" placeholder="Leer lassen um aktuelle Kategorie zu behalten">
+        </div>
+
+        <div class="field">
+            <div style="display: flex; flex-direction: row; align-items: end; gap: 1em;">
+                <label>Tags</label>
+                <div id="twitch-tags-char-limit" class="char-limit">
+                    <span id="twitch-tags-too-long-warning">Tag zu lang • </span><span id="twitch-tags-char-count"></span>/<span id="twitch-tags-char-max"></span> Tags
+                </div>
+            </div>
+            <label class="setting-description">Füge bis zu 10 Tags hinzu. Jeder tag darf nur 25 Zeichen, ohne spaces oder Sonderzeichen lang sein.</label>
+            <input type="text" id="twitch-tags-input" placeholder="Leer lassen um aktuelle tags zu behalten">
+        </div>
+
+        <button id="twitch-submit-button" onclick="UpdateTwitchSubmit()">Update</button>
+    </div>
+
+    <!-- Update Kick Popup -->
+    <div id="update-kick-dialog" class="dialog">
+        <button class="dialog-nav-button" onclick="CloseUpdateKickDialog()">×</button>
+
+        <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 1em;">
+            <img src="icons/platforms/kick.png" class="platform-icon">
+            <label class="title" style="text-align: center;">Stream Info</label>
+        </div>
+
+        <div class="field">
+            <div style="display: flex; flex-direction: row; align-items: end; gap: 1em;">
+                <label>Titel</label>
+                <div id="kick-title-char-limit" class="char-limit">
+                    <span id="kick-title-char-count"></span>/<span id="kick-title-char-max"></span>
+                </div>
+            </div>
+            <input type="text" id="kick-title-input" placeholder="Leer lassen um aktuellen Titel zu behalten">
+        </div>
+
+        <div class="field">
+            <label>Kategorie</label>
+            <input type="text" id="kick-category-input" placeholder="Leer lassen um aktuelle Kategorie zu behalten">
+        </div>
+
+        <button id="kick-submit-button" onclick="UpdateKickSubmit()">Update</button>
+    </div>
+
+    <!-- Update YouTube Popup -->
+    <div id="update-youtube-dialog" class="dialog">
+        <button class="dialog-nav-button" onclick="CloseUpdateYouTubeDialog()">×</button>
+
+        <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 1em;">
+            <img src="icons/platforms/youtube.png" class="platform-icon">
+            <label class="title" style="text-align: center;">Stream Info</label>
+        </div>
+
+        <div class="field">
+            <div style="display: flex; flex-direction: row; align-items: end; gap: 1em;">
+                <label>Titel</label>
+                <div id="youtube-title-char-limit" class="char-limit">
+                    <span id="youtube-title-char-count"></span>/<span id="youtube-title-char-max"></span>
+                </div>
+            </div>
+            <input type="text" id="youtube-title-input" placeholder="Leer lassen um aktuellen Titel zu behalten">
+        </div>
+
+        <div class="field">
+            <div style="display: flex; flex-direction: row; align-items: end; gap: 1em;">
+                <label>Beschreibung</label>
+                <div id="youtube-description-char-limit" class="char-limit">
+                    <span id="youtube-description-char-count"></span>/<span id="youtube-description-char-max"></span>
+                </div>
+            </div>
+            <textarea type="text" id="youtube-description-input" placeholder="Leer lassen um die aktuelle Beschreibung zu behalten"
+                class="textarea-description"></textarea>
+        </div>
+
+        <div class="field">
+            <label>Kategorie</label>
+            <select id="youtube-category-input">
+                <option value="Auto & Fahrzeuge">Auto & Fahrzeuge</option>
+                <option value="Bildung">Bildung</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Film & Animation">Film & Animation</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Menschen & Blog">Menschen & Blogs</option>
+                <option value="Musik">Musik</option>
+                <option value="Nachrichten & Politik">Nachrichten & Politik</option>
+                <option value="Praktische Tipps & Styling">Praktische Tipps & Styling</option>
+                <option value="Reisen & Events">Reisen & Events</option>
+                <option value="Soziales Engagement">Soziales Engagement</option>
+                <option value="Sport">Sport</option>
+                <option value="Tiere">Tiere</option>
+                <option value="Unterhaltung">Unterhaltung</option>
+                <option value="Wissenschaft & Technik">Wissenschaft & Technik</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <div style="display: flex; flex-direction: row; align-items: end; gap: 1em;">
+                <label>Tags</label>
+                <div id="youtube-tags-char-limit" class="char-limit">
+                    <span id="youtube-tags-char-count"></span>/<span id="youtube-tags-char-max"></span>
+                </div>
+            </div>
+            <input type="text" id="youtube-tags-input" placeholder="Leer lassen um aktuelle Tags zu behalten">
+        </div>
+
+        <div class="field">
+            <label>Sichtbarkeit</label>
+            <select id="youtube-privacy-select">
+                <option value="Privat">Privat</option>
+                <option value="Nicht gelistet">Nicht gelistet</option>
+                <option value="Öffentlich">Öffentlich</option>
+            </select>
+        </div>
+
+        <button id="youtube-submit-button" onclick="UpdateYouTubeSubmit()">Update</button>
+    </div>
+</body>
+
+</html>
+
+<!-- Broadcast Template -->
+<template id="broadcast-template">
+    <div class="broadcast">
+        <img class="platform-icon" id="platform-icon" src="" />
+
+        <div class="broadcast-info">
+            <label id="broadcast-title"></label>
+            <label id="broadcast-category" class="setting-description"></label>
+            <label id="kick-warning" class="setting-attribute"><br><i>Stream info nur verfügbar, wenn live — Zeigt
+                    den zuletzt bekannten Stream Titel</i></label>
+        </div>
+
+        <div id="broadcast-buttons">
+            <button id="broadcast-stream-button" class="icon-button" title="Stream öffnen"><img class="button-icon"
+                    src="https://api.iconify.design/streamline:button-play-solid.svg?color=%23ffffff"></button>
+            <button id="broadcast-dashboard-button" class="icon-button" title="Dashboard"><img class="button-icon"
+                    src="https://api.iconify.design/gridicons:popout.svg?color=%23ffffff"></button>
+            <button id="broadcast-edit-button" class="icon-button flip-that-shit-homie" title="Bearbeiten">✎</button>
+        </div>
+    </div>
+</template>
+
+<script src="script.js"></script>

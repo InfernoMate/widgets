@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <link rel="stylesheet" href="../../../.common/styles/global.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
+</head>
+
+<body>
+    <div id="settings">
+        <div class="setting">
+            <div>
+                <div class="setting-label" for="printer-name">Druckername</div>
+                <div class="setting-description">Wie in 'Windows' > 'Einstellungen' > 'Drucker & Scanner' benannt</div>
+            </div>
+            <input type="text" id="printer-name" name="printer-name" placeholder="Bei Netzwerk \\[PC Name]\[Drucker Name]" value="" autocomplete="off">
+        </div>
+        <div class="setting">
+            <div>
+                <div class="setting-label" for="paper-width">Papierbreite (mm)</div>
+                <div class="setting-description">Printer Bot wurde für 80mm Thermopapier entwickelt</div>
+            </div>
+            <input type="number" id="paper-width" name="paper-width" placeholder="80" value="80" min="0" autocomplete="off">
+        </div>
+        <div class="setting">
+            <div>
+                <div class="setting-label" for="discord-Webhook-Url">Discord Webhook URL</div>
+                <div class="setting-description">In welchem Channel soll es gepostet werden?</div>
+            </div>
+            <input type="text" id="discord-Webhook-Url" name="discord-Webhook-Url" placeholder="https://discord.com/api/webhooks value="" autocomplete="off">
+        </div>
+        <div class="setting">
+            <div>
+                <div class="setting-label" for="post-To-Discord">Auf Discord posten?</div>
+                <div class="setting-description">Wenn aktiviert, werden Prints im Discord gepostet</div>
+            </div>
+            <label class="switch" style="margin-left: auto;">
+                <input type="checkbox" id="post-To-Discord" name="post-To-Discord">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="setting">
+            <div>
+                <div class="setting-label" for="print-gift-bombs-individually">Gift Bombs einzeln drucken?</div>
+                <div class="setting-description">Wenn aktiviert, werden Gift Bombs als einzelne Bons gedruckt, wenn zusätzlich „Ignore Gift Subs from Gift Bombs“ in den Plattformeinstellungen für Twitch im Streamer.bot unchecked ist</div>
+            </div>
+            <label class="switch" style="margin-left: auto;">
+                <input type="checkbox" id="print-gift-bombs-individually" name="print-gift-bombs-individually">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="setting">
+            <div>
+                <div class="setting-label" for="ignore-test-triggers">Tests ignorieren?</div>
+                <div class="setting-description">Wenn aktiviert, werden 'Test'- und 'Simulate'-Ereignisse ignoriert</div>
+            </div>
+            <label class="switch" style="margin-left: auto;">
+                <input type="checkbox" id="ignore-test-triggers" name="ignore-test-triggers">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="setting">
+            <div>
+                <div class="setting-label" for="delete-temp-files">Temporäre Dateien löschen</div>
+                <div class="setting-description">Zur Fehlerbehebung deaktivieren</div>
+            </div>
+            <label class="switch" style="margin-left: auto;">
+                <input type="checkbox" id="delete-temp-files" name="delete-temp-files" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <button id="test-print-button" onclick="TestPrint()">Testdruck</button>
+    </div>
+</body>
+
+</html>
+
+<!-- Receipt Template -->
+<template id="receipt-template">
+    <div id="receipt-container">
+		<!-- Header -->
+        <div id="receipt-header">
+            <img id="receipt-avatar">
+            <div>
+                <div id="receipt-title"></div>
+                <div id="receipt-subtitle"></div>
+            </div>
+        </div>
+
+		<!-- Contents -->
+        <div id="receipt-content">
+        </div>
+
+		<!-- Footer -->
+        <div id="receipt-footer">
+            <img id="receipt-icon" src="">
+            <div id="receipt-date"></div>
+        </div>
+    </div>
+</template>
+
+<script src="../../../.common/utils/helpers.js"></script>
+<script src="script.js"></script>
