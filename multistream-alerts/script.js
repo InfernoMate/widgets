@@ -1693,11 +1693,11 @@ async function testWidget()
 {
 	UpdateAlertBox(
 		'twitch',
-		await GetAvatar('nutty', 'twitch'),
-		`nutty`,
+		await GetAvatar('InfernoMate', 'twitch'),
+		`InfernoMate`,
 		`hat mit Stufe 3 abonniert`,
 		'',
-		`nutty`,
+		`InfernoMate`,
 		`O-oooooooooo AAAAE-A-A-I-A-U- JO-oooooooooooo AAE-O-A-A-U-U-A- E-eee-ee-eee AAAAE-A-E-I-E-A-JO-ooo-oo-oo-oo EEEEO-A-AAA-AAAA`
 		//``
 	);
