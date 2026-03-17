@@ -297,7 +297,7 @@ function CopyImportCode() {
     const textToCopy = sbImportCodeLabel.textContent;
     navigator.clipboard.writeText(textToCopy)
         .then(() => {
-            console.debug('Copied to clipboard!');
+            console.debug('In Zwischenablage kopiert!');
 
             // Click feedback
             const root = document.documentElement;
