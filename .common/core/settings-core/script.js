@@ -395,7 +395,7 @@ function CopyURLToClipboard() {
 
 	// Create the "Copied!" message
 	const copiedMessage = document.createElement('span');
-	copiedMessage.textContent = 'Copied to clipboard!';
+	copiedMessage.textContent = 'In Zwischenablage kopiert!';
 	copiedMessage.style.textAlign = 'center';
 	copiedMessage.style.fontWeight = 'absolute';
 	copiedMessage.style.position = 'absolute';
