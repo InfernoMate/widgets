@@ -854,372 +854,421 @@ function YouTubeGiftMembershipReceived(data) {
 }
 
 async function StreamElementsTip(data) {
-	if (!showStreamElementsTips)
-		return;
+    if (!showStreamElementsTips)
+        return;
 
-	// Set the text
-	const donater = data.username;
-	const formattedAmount = `$${data.amount}`;
-	const currency = data.currency;
-	const message = data.message;
+    // Set the text
+    const donater = data.username;
+    const formattedAmount = `${data.amount}`;
+    const currency = data.currency;
+    const message = data.message;
 
-	UpdateAlertBox(
-		'streamelements',
-		'',
-		`${donater}`,
-		`hat ${currency}${formattedAmount} gespendet`,
-		``,
-		donater,
-		message,
-		streamelementsTipAction,
-		data
-	);
+    UpdateAlertBox(
+        'streamelements',
+        '',
+        `${donater}`,
+        `hat ${formattedAmount}${currency} gespendet`,
+        ``,
+        donater,
+        message,
+        streamelementsTipAction,
+        data
+    );
 }
 
 function PatreonPledgeCreated(data) {
-	if (!showPatreonMemberships)
-		return;
+    if (!showPatreonMemberships)
+        return;
 
-	const user = data.attributes.full_name;
-	const amount = (data.attributes.will_pay_amount_cents/100).toFixed(2);
-	const patreonIcon = `<img src="icons/platforms/patreon.png" class="platform"/>`;
-	
-	// Render avatars
-	const avatarURL = 'icons/platforms/patreon.png';
-	
-	UpdateAlertBox(
-		'patreon',
-		avatarURL,
-		`${user}`,
-		`ist Patreon beigetreten ($${amount})`,
-		``,
-		user,
-		``,
-		patreonMembershipActions,
-		data
-	);
+    const user = data.attributes.full_name;
+    const amount = (data.attributes.will_pay_amount_cents/100).toFixed(2);
+    const patreonIcon = `<img src="icons/platforms/patreon.png" class="platform"/>`;
+    
+    // Render avatars
+    const avatarURL = 'icons/platforms/patreon.png';
+    
+    UpdateAlertBox(
+        'patreon',
+        avatarURL,
+        `${user}`,
+        `ist Patreon beigetreten ($${amount})`,
+        ``,
+        user,
+        ``,
+        patreonMembershipActions,
+        data
+    );
 }
 
 function KofiDonation(data) {
-	if (!showKofiDonations)
-		return;
+    if (!showKofiDonations)
+        return;
 
-	// Set the text
-	const user = data.from;
-	const amount = data.amount;
-	const currency = data.currency;
-	const message = data.message;
-	
-	// Render avatars
-	const avatarURL = 'icons/platforms/kofi.png';
+    // Set the text
+    const user = data.from;
+    const amount = data.amount;
+    const currency = data.currency;
+    const message = data.message;
+    
+    // Render avatars
+    const avatarURL = 'icons/platforms/kofi.png';
 
-	if (currency == "USD")
-		UpdateAlertBox(
-			'kofi',
-			avatarURL,
-			`${user}`,
-			`hat $${amount} gespendet`,
-			``,
-			user,
-			message,
-			kofiDonationAction,
-			data
-		);
-	else
-		UpdateAlertBox(
-			'kofi',
-			`${user}`,
-			`hat ${amount} ${currency} gespendet`,
-			``,
-			user,
-			message,
-			kofiDonationAction,
-			data
-		);
+    if (currency == "USD")
+        UpdateAlertBox(
+            'kofi',
+            avatarURL,
+            `${user}`,
+            `hat $${amount} gespendet`,
+            ``,
+            user,
+            message,
+            kofiDonationAction,
+            data
+        );
+    else if (currency == "EUR")
+        UpdateAlertBox(
+            'kofi',
+            avatarURL,
+            `${user}`,
+            `hat ${amount}€ gespendet`,
+            ``,
+            user,
+            message,
+            kofiDonationAction,
+            data
+        );
+    else
+        UpdateAlertBox(
+            'kofi',
+            avatarURL,
+            `${user}`,
+            `hat ${currency} ${amount} gespendet`,
+            ``,
+            user,
+            message,
+            kofiDonationAction,
+            data
+        );
 }
 
 function KofiSubscription(data) {
-	if (!showKofiDonations)
-		return;
+    if (!showKofiDonations)
+        return;
 
-	// Set the text
-	const user = data.from;
-	const amount = data.amount;
-	const currency = data.currency;
-	const message = data.message;
-	
-	// Render avatars
-	const avatarURL = 'icons/platforms/kofi.png';
+    // Set the text
+    const user = data.from;
+    const amount = data.amount;
+    const currency = data.currency;
+    const message = data.message;
+    
+    // Render avatars
+    const avatarURL = 'icons/platforms/kofi.png';
 
-	if (currency == "USD")
-		UpdateAlertBox(
-			'kofi',
-			avatarURL,
-			`${user}`,
-			`hat abonniert ($${amount})`,
-			``,
-			user,
-			message,
-			kofiDonationAction,
-			data
-		);
-	else
-		UpdateAlertBox(
-			'kofi',
-			`${user}`,
-			`hat abonniert (${currency} ${amount})`,
-			``,
-			user,
-			message,
-			kofiDonationAction,
-			data
-		);
+    if (currency == "USD")
+        UpdateAlertBox(
+            'kofi',
+            avatarURL,
+            `${user}`,
+            `hat abonniert ($${amount})`,
+            ``,
+            user,
+            message,
+            kofiDonationAction,
+            data
+        );
+    else if (currency == "EUR")
+        UpdateAlertBox(
+            'kofi',
+            avatarURL,
+            `${user}`,
+            `hat abonniert (${amount}€)`,
+            ``,
+            user,
+            message,
+            kofiDonationAction,
+            data
+        );
+    else
+        UpdateAlertBox(
+            'kofi',
+            avatarURL,
+            `${user}`,
+            `hat abonniert (${currency} ${amount})`,
+            ``,
+            user,
+            message,
+            kofiDonationAction,
+            data
+        );
 }
 
 function KofiResubscription(data) {
-	if (!showKofiDonations)
-		return;
+    if (!showKofiDonations)
+        return;
 
-	// Set the text
-	const user = data.from;
-	const tier = data.tier;
-	const message = data.message;
-	
-	// Render avatars
-	const avatarURL = 'icons/platforms/kofi.png';
+    // Set the text
+    const user = data.from;
+    const tier = data.tier;
+    const message = data.message;
+    
+    // Render avatars
+    const avatarURL = 'icons/platforms/kofi.png';
 
-	UpdateAlertBox(
-		'kofi',
-		avatarURL,
-		`${user}`,
-		`hat abonniert (${tier})`,
-		``,
-		user,
-		message,
-		kofiDonationAction,
-		data
-	);
+    UpdateAlertBox(
+        'kofi',
+        avatarURL,
+        `${user}`,
+        `hat erneut abonniert (${tier})`,
+        ``,
+        user,
+        message,
+        kofiDonationAction,
+        data
+    );
 }
 
 function KofiShopOrder(data) {
-	if (!showKofiDonations)
-		return;
+    if (!showKofiDonations)
+        return;
 
-	// Set the text
-	const user = data.from;
-	const amount = data.amount;
-	const currency = data.currency;
-	const message = data.message;
-	const itemTotal = data.items.length;
-	let formattedAmount = "";
+    // Set the text
+    const user = data.from;
+    const amount = data.amount;
+    const currency = data.currency;
+    const message = data.message;
+    const itemTotal = data.items.length;
+    let formattedAmount = "";
 
-	if (amount == 0)
-		formattedAmount = ""
-	else if (currency == "USD")
-		formattedAmount = `$${amount}`;
-	else
-		formattedAmount = `${currency} ${amount}`;
-	
-	// Render avatars
-	const avatarURL = 'icons/platforms/kofi.png';
+    if (amount == 0)
+        formattedAmount = ""
+    else if (currency == "USD")
+        formattedAmount = `($${amount})`;
+    else if (currency == "EUR")
+        formattedAmount = `(${amount}€)`;
+    else
+        formattedAmount = `(${currency} ${amount})`;
+    
+    // Render avatars
+    const avatarURL = 'icons/platforms/kofi.png';
 
-	UpdateAlertBox(
-		'kofi',
-		avatarURL,
-		`${user}`,
-		`hat ${itemTotal} Artikel auf Ko-fi bestellt `,
-		`${formattedAmount}`,
-		user,
-		message,
-		kofiDonationAction,
-		data
-	);
+    UpdateAlertBox(
+        'kofi',
+        avatarURL,
+        `${user}`,
+        `hat ${itemTotal} Artikel auf Ko-fi bestellt `,
+        `${formattedAmount}`,
+        user,
+        message,
+        kofiDonationAction,
+        data
+    );
 }
 
 function TipeeeStreamDonation(data) {
-	if (!showTipeeeStreamDonations)
-		return;
+    if (!showTipeeeStreamDonations)
+        return;
 
-	// Set the text
-	const user = data.username;
-	const amount = data.amount;
-	const currency = data.currency;
-	const message = data.message;
-	
-	// Render avatars
-	const avatarURL = 'icons/platforms/tipeeeStream.png';
+    // Set the text
+    const user = data.username;
+    const amount = data.amount;
+    const currency = data.currency;
+    const message = data.message;
+    
+    // Render avatars
+    const avatarURL = 'icons/platforms/tipeeeStream.png';
 
-	if (currency == "USD")
-		UpdateAlertBox(
-			'tipeeeStream',
-			avatarURL,
-			`${user}`,
-			`hat $${amount} gespendet`,
-			``,
-			user,
-			message,
-			tipeeestreamDonationAction,
-			data
-		);
-	else
-		UpdateAlertBox(
-			'tipeeeStream',
-			avatarURL,
-			`${user}`,
-			`hat ${amount} ${currency} gespendet`,
-			``,
-			user,
-			message,
-			tipeeestreamDonationAction,
-			data
-		);
+    if (currency == "USD")
+        UpdateAlertBox(
+            'tipeeeStream',
+            avatarURL,
+            `${user}`,
+            `hat $${amount} gespendet`,
+            ``,
+            user,
+            message,
+            tipeeestreamDonationAction,
+            data
+        );
+    else if (currency == "EUR")
+        UpdateAlertBox(
+            'tipeeeStream',
+            avatarURL,
+            `${user}`,
+            `hat ${amount}€ gespendet`,
+            ``,
+            user,
+            message,
+            tipeeestreamDonationAction,
+            data
+        );
+    else
+        UpdateAlertBox(
+            'tipeeeStream',
+            avatarURL,
+            `${user}`,
+            `hat ${currency} ${amount} gespendet`,
+            ``,
+            user,
+            message,
+            tipeeestreamDonationAction,
+            data
+        );
 }
 
 function FourthwallOrderPlaced(data) {
-	if (!showFourthwallAlerts)
-		return;
+    if (!showFourthwallAlerts)
+        return;
 
-	// Set the text
-	let user = data.username;
-	const orderTotal = data.total;
-	const currency = data.currency;
-	const item = data.variants[0].name;
-	const itemsOrdered = data.variants.length;
-	const message = DecodeHTMLString(data.statmessageus);
-	const itemImageUrl = data.variants[0].image;
+    // Set the text
+    let user = data.username;
+    const orderTotal = data.total;
+    const currency = data.currency;
+    const item = data.variants[0].name;
+    const itemsOrdered = data.variants.length;
+    const message = DecodeHTMLString(data.statmessageus);
+    const itemImageUrl = data.variants[0].image;
 
-	// If there user did not provide a username, just say "Jemand"
-	if (user == undefined)
-		user = "Jemand";
+    // If there user did not provide a username, just say "Someone"
+    if (user == undefined)
+        user = "Jemand";
 
-	let attributeText = ""
+    let attributeText = ""
 
-	// If the user ordered more than one item, write how many items they ordered
-	if (itemsOrdered > 1)
-		attributeText += `und ${itemsOrdered - 1} weitere(n) Artikel!`;
+    // If the user ordered more than one item, write how many items they ordered
+    if (itemsOrdered > 1)
+        attributeText += `und ${itemsOrdered - 1} weitere Artikel!`;
 
-	// If the user spent money, put the order total
-	if (orderTotal == 0)
-		attributeText += ``;
-	else if (currency == "USD")
-		attributeText += ` ($${orderTotal})`;
-	else
-		attributeText += ` (${orderTotal} ${currency})`;
+    // If the user spent money, put the order total
+    if (orderTotal == 0)
+        attributeText += ``;
+    else if (currency == "USD")
+        attributeText += ` ($${orderTotal})`;
+    else if (currency == "EUR")
+        attributeText += ` (${orderTotal}€)`;
+    else
+        attributeText += ` (${orderTotal} ${currency})`;
 
-	UpdateAlertBox(
-		'fourthwall',
-		itemImageUrl,
-		`${user}`,
-		`hat ${item} bestellt`,
-		attributeText,
-		user,
-		message,
-		fourthwallAlertAction,
-		data
-	);
+    UpdateAlertBox(
+        'fourthwall',
+        itemImageUrl,
+        `${user}`,
+        `hat ${item} bestellt`,
+        attributeText,
+        user,
+        message,
+        fourthwallAlertAction,
+        data
+    );
 }
 
 function FourthwallDonation(data) {
-	if (!showFourthwallAlerts)
-		return;
+    if (!showFourthwallAlerts)
+        return;
 
-	// Set the text
-	let user = data.username;
-	const amount = data.amount;
-	const currency = data.currency;
-	const message = data.message;
+    // Set the text
+    let user = data.username;
+    const amount = data.amount;
+    const currency = data.currency;
+    const message = data.message;
 
-	let formattedAmount = '';
-	
-	// If the user spent money, put the order total
-	if (currency == "USD")
-		formattedAmount += ` $${amount}`;
-	else
-		formattedAmount += ` ${currency} ${amount}`;
+    let formattedAmount = '';
+    
+    // If the user spent money, put the order total
+    if (currency == "USD")
+        formattedAmount += ` $${amount}`;
+    else if (currency == "EUR")
+        formattedAmount += ` (${amount}€)`;
+    else
+        formattedAmount += ` ${currency} ${amount}`;
 
-	UpdateAlertBox(
-		'fourthwall',
-		'',
-		`${user}`,
-		`hat ${formattedAmount} gespendet`,
-		'',
-		user,
-		message,
-		fourthwallAlertAction,
-		data
-	);
+    UpdateAlertBox(
+        'fourthwall',
+        '',
+        `${user}`,
+        `hat gespendet ${formattedAmount}`,
+        '',
+        user,
+        message,
+        fourthwallAlertAction,
+        data
+    );
 }
 
 function FourthwallSubscriptionPurchased(data) {
-	if (!showFourthwallAlerts)
-		return;
+    if (!showFourthwallAlerts)
+        return;
 
-	// Set the text
-	let user = data.nickname;
-	const amount = data.amount;
-	const currency = data.currency;
-	
-	let formattedAmount = '';
-	
-	// If the user spent money, put the order total
-	if (currency == "USD")
-		formattedAmount += ` ($${amount})`;
-	else
-		formattedAmount += ` (${currency} ${amount})`;
+    // Set the text
+    let user = data.nickname;
+    const amount = data.amount;
+    const currency = data.currency;
+    
+    let formattedAmount = '';
+    
+    // If the user spent money, put the order total
+    if (currency == "USD")
+        formattedAmount += ` ($${amount})`;
+    else if (currency == "EUR")
+        formattedAmount += ` (${amount}€)`;
+    else
+        formattedAmount += ` (${currency} ${amount})`;
 
-	UpdateAlertBox(
-		'fourthwall',
-		'',
-		`${user}`,
-		`hat für ${formattedAmount} abonniert`,
-		'',
-		user,
-		'',
-		fourthwallAlertAction,
-		data
-	);
+    UpdateAlertBox(
+        'fourthwall',
+        '',
+        `${user}`,
+        `hat abonniert ${formattedAmount}`,
+        '',
+        user,
+        '',
+        fourthwallAlertAction,
+        data
+    );
 }
 
 function FourthwallGiftPurchase(data) {
-	if (!showFourthwallAlerts)
-		return;
 
-	// Set the text
-	// let user = data.username;
-	const total = data.total;
-	const currency = data.currency;
-	const gifts = data.gifts.length;
-	const itemName = data.offer.name;
+    if (!showFourthwallAlerts)
+        return;
+
+    // Set the text
+    // let user = data.username;
+    const total = data.total;
+    const currency = data.currency;
+    const gifts = data.gifts.length;
+    const itemName = data.offer.name;
 	// const itemImageUrl = data.offer.imageUrl;
 	// const message = DecodeHTMLString(data.statmessageus);
 
-	let contents = '';
-	let attributesText = '';
+    let contents = '';
+    let attributesText = '';
 
-	// If there is more than one gifted item, display the number of gifts
-	if (gifts > 1)
-		contents += ` ${gifts} x `;
+    // If there is more than one gifted item, display the number of gifts
+    if (gifts > 1)
+        contents += ` ${gifts} x `;
 
-	// The name of the item to be given away
-	contents += ` ${itemName}`;
+    // The name of the item to be given away
+    contents += ` ${itemName}`;
 
-	// If the user spent money, put the order total
-	if (currency == "USD")
-		attributesText = `$${total}`;
-	else
-		attributesText = `${currency}${total}`;
+    // If the user spent money, put the order total
+    if (currency == "USD")
+        attributesText = `$${total}`;
+    else if (currency == "EUR")
+        attributesText = `${total}€`;
+    else
+        attributesText = `${currency}${total}`;
 
-	UpdateAlertBox(
-		'fourthwall',
-		'', // itemImageUrl,
-		`Ein Artikel wurde verschenkt!`,// `${user}`,
-		`${contents}`, // `gifted ${contents}`,
-		attributesText,
+    UpdateAlertBox(
+        'fourthwall',
+        '', // itemImageUrl,
+        `Jemand`, // `${user}`,
+        `hat ${contents} verschenkt`, // `gifted ${contents}`,
+        attributesText,
 		'', // user,
 		'', // message,
-		fourthwallAlertAction,
-		data
-	);
+        fourthwallAlertAction,
+        data
+    );
 }
 
 function FourthwallGiftDrawStarted(data) {

@@ -416,7 +416,7 @@ async function CustomEvent(data) {
                 if (IsValidUrl(avatarURL))
                     avatarEl.src = avatarURL;
                 else
-                    avatarEl.style.display = 'none'
+                avatarEl.style.display = 'none'
                 titleEl.style.fontSize = '2em';
                 titleEl.innerText = FormatCurrency(data.tipAmount, data.tipCurrency);
                 subtitleEl.innerText = `${data.tipUsername}`;
