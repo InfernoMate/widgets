@@ -118,15 +118,15 @@ const showTikTokSubs = GetBooleanParam("showTikTokSubs", true);
 const tiktokSubAction = urlParams.get("tiktokSubAction") || "";
 
 // Which donation alerts do you want to see?
-const showStreamElementsTips = GetBooleanParam("showStreamElementsTips", false);
+const showStreamElementsTips = GetBooleanParam("showStreamElementsTips", true);
 const streamelementsTipAction = urlParams.get("streamelementsTipAction") || "";
-const showPatreonMemberships = GetBooleanParam("showPatreonMemberships", false);
+const showPatreonMemberships = GetBooleanParam("showPatreonMemberships", true);
 const patreonMembershipActions = urlParams.get("patreonMembershipActions") || "";
-const showKofiDonations = GetBooleanParam("showKofiDonations", false);
+const showKofiDonations = GetBooleanParam("showKofiDonations", true);
 const kofiDonationAction = urlParams.get("kofiDonationAction") || "";
-const showTipeeeStreamDonations = GetBooleanParam("showTipeeeStreamDonations", false);
+const showTipeeeStreamDonations = GetBooleanParam("showTipeeeStreamDonations", true);
 const tipeeestreamDonationAction = urlParams.get("tipeeestreamDonationAction") || "";
-const showFourthwallAlerts = GetBooleanParam("showFourthwallAlerts", false);
+const showFourthwallAlerts = GetBooleanParam("showFourthwallAlerts", true);
 const fourthwallAlertAction = urlParams.get("fourthwallAlertAction") || "";
 
 ////////////////////
@@ -482,9 +482,9 @@ window.addEventListener('load', TikfinityConnect);
 
 
 
-///////////////////////
-// MULTICHAT OVERLAY //
-///////////////////////
+////////////////////////
+// MULTISTREAM ALERTS //
+////////////////////////
 
 async function TwitchFollow(data) {
 	if (!showTwitchFollows)
@@ -863,9 +863,14 @@ async function StreamElementsTip(data) {
     const currency = data.currency;
     const message = data.message;
 
+	// Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(donater, 'twitch');
+    // Wenn keine gültige URL zurückkommt, benutze einen leeren String (wie vorher)
+    if (!IsValidUrl(avatarURL)) avatarURL = '';
+
     UpdateAlertBox(
         'streamelements',
-        '',
+        avatarURL,
         `${donater}`,
         `hat ${formattedAmount}${currency} gespendet`,
         ``,
@@ -876,7 +881,7 @@ async function StreamElementsTip(data) {
     );
 }
 
-function PatreonPledgeCreated(data) {
+async function PatreonPledgeCreated(data) {
     if (!showPatreonMemberships)
         return;
 
@@ -884,14 +889,16 @@ function PatreonPledgeCreated(data) {
     const amount = (data.attributes.will_pay_amount_cents/100).toFixed(2);
     const patreonIcon = `<img src="icons/platforms/patreon.png" class="platform"/>`;
     
-    // Render avatars
-    const avatarURL = 'icons/platforms/patreon.png';
+    // Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(user, 'twitch');
+    // Fallback auf das Patreon-Icon, falls der Name auf Twitch nicht existiert
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/patreon.png';
     
     UpdateAlertBox(
         'patreon',
         avatarURL,
         `${user}`,
-        `ist Patreon beigetreten ($${amount})`,
+        `ist Patreon beigetreten (${amount} €)`,
         ``,
         user,
         ``,
@@ -900,7 +907,7 @@ function PatreonPledgeCreated(data) {
     );
 }
 
-function KofiDonation(data) {
+async function KofiDonation(data) {
     if (!showKofiDonations)
         return;
 
@@ -910,8 +917,10 @@ function KofiDonation(data) {
     const currency = data.currency;
     const message = data.message;
     
-    // Render avatars
-    const avatarURL = 'icons/platforms/kofi.png';
+    // Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(user, 'twitch');
+    // Fallback auf das Ko-fi-Icon
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/kofi.png';
 
     if (currency == "USD")
         UpdateAlertBox(
@@ -930,7 +939,7 @@ function KofiDonation(data) {
             'kofi',
             avatarURL,
             `${user}`,
-            `hat ${amount}€ gespendet`,
+            `hat ${amount} € gespendet`,
             ``,
             user,
             message,
@@ -942,7 +951,7 @@ function KofiDonation(data) {
             'kofi',
             avatarURL,
             `${user}`,
-            `hat ${currency} ${amount} gespendet`,
+            `hat ${amount} ${currency} gespendet`,
             ``,
             user,
             message,
@@ -951,7 +960,7 @@ function KofiDonation(data) {
         );
 }
 
-function KofiSubscription(data) {
+async function KofiSubscription(data) {
     if (!showKofiDonations)
         return;
 
@@ -961,8 +970,10 @@ function KofiSubscription(data) {
     const currency = data.currency;
     const message = data.message;
     
-    // Render avatars
-    const avatarURL = 'icons/platforms/kofi.png';
+    // Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(user, 'twitch');
+    // Fallback auf das Ko-fi-Icon
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/kofi.png';
 
     if (currency == "USD")
         UpdateAlertBox(
@@ -981,7 +992,7 @@ function KofiSubscription(data) {
             'kofi',
             avatarURL,
             `${user}`,
-            `hat abonniert (${amount}€)`,
+            `hat abonniert (${amount} €)`,
             ``,
             user,
             message,
@@ -993,7 +1004,7 @@ function KofiSubscription(data) {
             'kofi',
             avatarURL,
             `${user}`,
-            `hat abonniert (${currency} ${amount})`,
+            `hat abonniert (${amount} ${currency} )`,
             ``,
             user,
             message,
@@ -1002,7 +1013,7 @@ function KofiSubscription(data) {
         );
 }
 
-function KofiResubscription(data) {
+async function KofiResubscription(data) {
     if (!showKofiDonations)
         return;
 
@@ -1011,8 +1022,10 @@ function KofiResubscription(data) {
     const tier = data.tier;
     const message = data.message;
     
-    // Render avatars
-    const avatarURL = 'icons/platforms/kofi.png';
+    // Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(user, 'twitch');
+    // Fallback auf das Ko-fi-Icon
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/kofi.png';
 
     UpdateAlertBox(
         'kofi',
@@ -1027,7 +1040,7 @@ function KofiResubscription(data) {
     );
 }
 
-function KofiShopOrder(data) {
+async function KofiShopOrder(data) {
     if (!showKofiDonations)
         return;
 
@@ -1044,12 +1057,14 @@ function KofiShopOrder(data) {
     else if (currency == "USD")
         formattedAmount = `($${amount})`;
     else if (currency == "EUR")
-        formattedAmount = `(${amount}€)`;
+        formattedAmount = `(${amount} €)`;
     else
-        formattedAmount = `(${currency} ${amount})`;
+        formattedAmount = `(${amount} ${currency})`;
     
-    // Render avatars
-    const avatarURL = 'icons/platforms/kofi.png';
+	// Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(user, 'twitch');
+    // Fallback auf das Ko-fi-Icon
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/kofi.png';
 
     UpdateAlertBox(
         'kofi',
@@ -1064,7 +1079,7 @@ function KofiShopOrder(data) {
     );
 }
 
-function TipeeeStreamDonation(data) {
+async function TipeeeStreamDonation(data) {
     if (!showTipeeeStreamDonations)
         return;
 
@@ -1074,8 +1089,10 @@ function TipeeeStreamDonation(data) {
     const currency = data.currency;
     const message = data.message;
     
-    // Render avatars
-    const avatarURL = 'icons/platforms/tipeeeStream.png';
+    // Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(user, 'twitch');
+    // Fallback auf das TipeeeStream-Icon
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/tipeeeStream.png';
 
     if (currency == "USD")
         UpdateAlertBox(
@@ -1094,7 +1111,7 @@ function TipeeeStreamDonation(data) {
             'tipeeeStream',
             avatarURL,
             `${user}`,
-            `hat ${amount}€ gespendet`,
+            `hat ${amount} € gespendet`,
             ``,
             user,
             message,
@@ -1106,7 +1123,7 @@ function TipeeeStreamDonation(data) {
             'tipeeeStream',
             avatarURL,
             `${user}`,
-            `hat ${currency} ${amount} gespendet`,
+            `hat ${amount} ${currency} gespendet`,
             ``,
             user,
             message,
@@ -1161,7 +1178,7 @@ function FourthwallOrderPlaced(data) {
     );
 }
 
-function FourthwallDonation(data) {
+async function FourthwallDonation(data) {
     if (!showFourthwallAlerts)
         return;
 
@@ -1171,19 +1188,24 @@ function FourthwallDonation(data) {
     const currency = data.currency;
     const message = data.message;
 
-    let formattedAmount = '';
+    // Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(user, 'twitch');
+    // Fallback auf das TipeeeStream-Icon
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/fourthwall.jpeg';
+	
+	let formattedAmount = '';
     
     // If the user spent money, put the order total
     if (currency == "USD")
         formattedAmount += ` $${amount}`;
     else if (currency == "EUR")
-        formattedAmount += ` (${amount}€)`;
+        formattedAmount += ` (${amount} €)`;
     else
-        formattedAmount += ` ${currency} ${amount}`;
+        formattedAmount += ` ${amount} ${currency}`;
 
     UpdateAlertBox(
         'fourthwall',
-        '',
+        avatarURL,
         `${user}`,
         `hat gespendet ${formattedAmount}`,
         '',
@@ -1194,7 +1216,7 @@ function FourthwallDonation(data) {
     );
 }
 
-function FourthwallSubscriptionPurchased(data) {
+async function FourthwallSubscriptionPurchased(data) {
     if (!showFourthwallAlerts)
         return;
 
@@ -1203,19 +1225,24 @@ function FourthwallSubscriptionPurchased(data) {
     const amount = data.amount;
     const currency = data.currency;
     
+	// Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(user, 'twitch');
+    // Fallback auf das TipeeeStream-Icon
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/fourthwall.jpeg';
+
     let formattedAmount = '';
     
     // If the user spent money, put the order total
     if (currency == "USD")
         formattedAmount += ` ($${amount})`;
     else if (currency == "EUR")
-        formattedAmount += ` (${amount}€)`;
+        formattedAmount += ` (${amount} €)`;
     else
-        formattedAmount += ` (${currency} ${amount})`;
+        formattedAmount += ` (${amount} ${currency})`;
 
     UpdateAlertBox(
         'fourthwall',
-        '',
+        avatarURL,
         `${user}`,
         `hat abonniert ${formattedAmount}`,
         '',
@@ -1227,7 +1254,7 @@ function FourthwallSubscriptionPurchased(data) {
 }
 
 function FourthwallGiftPurchase(data) {
-
+    console.log(data);
     if (!showFourthwallAlerts)
         return;
 
@@ -1536,6 +1563,16 @@ async function TikTokSubscribe(data) {
 //////////////////////
 // HELPER FUNCTIONS //
 //////////////////////
+
+// Prüft, ob ein übergebener String eine gültige URL ist
+function IsValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch {
+        return false;
+    }
+}
 
 // I used Gemini for this shit so if it doesn't work, blame Google
 function FindFirstImageUrl(jsonObject) {
