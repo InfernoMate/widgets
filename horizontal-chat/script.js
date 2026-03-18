@@ -1,3 +1,21 @@
+/////////////
+// Credits //
+/////////////
+
+// Credits / Danksagung:
+// Die Grundlage dieses Codes basiert auf den Arbeiten von nutty.
+// Website: https://nutty.gg
+// Twitch: https://www.twitch.tv/nutty
+// YouTube: https://www.youtube.com/@nuttylmao
+// GitHub: https://github.com/nuttylmao
+
+// Credits / Acknowledgement:
+// The foundation of this code is based on the work of nutty.
+// Website: https://nutty.gg
+// Twitch: https://www.twitch.tv/nutty
+// YouTube: https://www.youtube.com/@nuttylmao
+// GitHub: https://github.com/nuttylmao
+
 ////////////////
 // PARAMETERS //
 ////////////////
@@ -37,7 +55,7 @@ const opacity = urlParams.get("opacity") || "0.5";
 
 const hideAfter = GetIntParam("hideAfter", 0);
 const excludeCommands = GetBooleanParam("excludeCommands", true);
-const ignoreChatters = urlParams.get("ignoreChatters") || "Sery_Bot,KofiStreamBot,pierreliusmaximusbot,Nightbot,Fossabot,InfernoMateBot,WizeBot";
+const ignoreChatters = urlParams.get("ignoreChatters") || "";
 const groupConsecutiveMessages = GetBooleanParam("groupConsecutiveMessages", true);
 
 const showTwitchMessages = GetBooleanParam("showTwitchMessages", true);

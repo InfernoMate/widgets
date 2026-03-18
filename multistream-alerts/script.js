@@ -865,8 +865,7 @@ async function StreamElementsTip(data) {
 
 	// Versuche, den Twitch-Avatar zu laden
     let avatarURL = await GetAvatar(donater, 'twitch');
-    // Wenn keine gültige URL zurückkommt, benutze einen leeren String (wie vorher)
-    if (!IsValidUrl(avatarURL)) avatarURL = '';
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/streamelements.jpeg';
 
     UpdateAlertBox(
         'streamelements',
@@ -1518,8 +1517,9 @@ async function TikTokGift(data) {
 	const tiktokIcon = `<img src="icons/platforms/tiktok.png" class="platform"/>`;
 	const giftImg = `<img src=${data.giftPictureUrl} style="height: 1em"/>`;
 	
-	// Render avatars
-	const avatarURL = 'icons/platforms/tiktok.png';
+    // Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(username, 'twitch');
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/tiktok.png';
 
 	UpdateAlertBox(
 		'tiktok',
@@ -1542,8 +1542,9 @@ async function TikTokSubscribe(data) {
 	const username = data.nickname;
 	const tiktokIcon = `<img src="icons/platforms/tiktok.png" class="platform"/>`;
 	
-	// Render avatars
-	const avatarURL = 'icons/platforms/tiktok.png';
+    // Versuche, den Twitch-Avatar zu laden
+    let avatarURL = await GetAvatar(username, 'twitch');
+    if (!IsValidUrl(avatarURL)) avatarURL = 'icons/platforms/tiktok.png';
 	
 	UpdateAlertBox(
 		'tiktok',
