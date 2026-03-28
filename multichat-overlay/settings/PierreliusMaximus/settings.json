@@ -291,6 +291,14 @@
             "group": "Welche Twitch-Nachrichten möchtest du sehen?"
         },
         {
+			"id": "showTwitchWatchStreaks",
+			"label": "Watch Streaks",
+			"description": "",
+			"type": "checkbox",
+			"defaultValue": true,
+			"group": "Welche Twitch-Nachrichten möchtest du sehen?"
+		},
+        {
             "id": "showTwitchSharedChat",
             "label": "Geteilte Chat-Nachrichten",
             "description": "",

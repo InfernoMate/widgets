@@ -155,7 +155,7 @@
             "label": "Chatter ignorieren",
             "description": "Ignorierte Chatter werden nicht angezeigt",
             "type": "text",
-            "defaultValue": "Sery_Bot,KofiStreamBot,pierreliusmaximusbot,Nightbot,Fossabot,InfernoMateBot,WizeBot,StreamElements,Streamlabs",
+            "defaultValue": "Sery_Bot,KofiStreamBot,pierreliusmaximusbot,Nightbot,Fossabot,InfernoMateBot,WizeBot,StreamElements",
             "group": "Allgemein"
         },
         {
@@ -290,6 +290,14 @@
             "defaultValue": false,
             "group": "Welche Twitch-Nachrichten möchtest du sehen?"
         },
+        {
+			"id": "showTwitchWatchStreaks",
+			"label": "Watch Streaks",
+			"description": "",
+			"type": "checkbox",
+			"defaultValue": true,
+			"group": "Welche Twitch-Nachrichten möchtest du sehen?"
+		},
         {
             "id": "showTwitchSharedChat",
             "label": "Geteilte Chat-Nachrichten",
