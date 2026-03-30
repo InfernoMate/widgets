@@ -303,10 +303,10 @@ function CopyImportCode() {
             const root = document.documentElement;
             const successColor = getComputedStyle(root).getPropertyValue('--success-color').trim();
             const buttonColor = getComputedStyle(root).getPropertyValue('--button-color').trim();
-            sbImportCopyButton.textContent = 'Copied!';
+            sbImportCopyButton.textContent = 'Kopiert!';
             sbImportCopyButton.style.background = successColor;
             setTimeout(() => {
-                sbImportCopyButton.textContent = 'Copy';
+                sbImportCopyButton.textContent = 'Kopieren';
                 sbImportCopyButton.style.background = buttonColor;
             }, 1500);
         })
