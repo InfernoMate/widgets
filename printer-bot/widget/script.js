@@ -50,7 +50,7 @@ function StartAnimation(imageData) {
     // 2. Bon wird gedruckt
     setTimeout(() => {
         // --- SOUND ABSPIELEN ---
-        let printSound = new Audio('printer.mp3');
+        let printSound = new Audio('assets/printer.mp3');
         printSound.volume = 0.5; // Optional: Lautstärke zwischen 0.0 und 1.0 anpassen
         printSound.play().catch(e => console.log("Fehler beim Abspielen des Sounds:", e));
 
