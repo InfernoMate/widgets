@@ -85,7 +85,40 @@ async function CustomEvent(data) {
                 subtitleEl.innerText = `${data.user}`;
 
                 const messageEl = document.createElement('div');
-                messageEl.innerHTML = ConstructMessageFromParts(data.parts);
+                messageEl.innerHTML = data.message;
+
+                // Render emotes
+                for (i in data.emotes) {
+                    const emoteElement = `<img src="${data.emotes[i].imageUrl}" class="emote"/>`;
+                    const emoteName = EscapeRegExp(data.emotes[i].name);
+                    function EscapeRegExp(string) {
+                        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+                    }
+
+                    let regexPattern = emoteName;
+
+                    // Check if the emote name consists only of word characters (alphanumeric and underscore)
+                    if (/^\w+$/.test(emoteName)) {
+                        regexPattern = `\\b${emoteName}\\b`;
+                    }
+                    else {
+                        // For non-word emotes, ensure they are surrounded by non-word characters or boundaries
+                        regexPattern = `(?<=^|[^\\w])${emoteName}(?=$|[^\\w])`;
+                    }
+
+                    const regex = new RegExp(regexPattern, 'g');
+                    messageEl.innerHTML = messageEl.innerHTML.replace(regex, emoteElement);
+                }
+
+                // Render cheermotes
+                for (i in data.cheerEmotes) {
+                    const bits = data.cheerEmotes[i].bits;
+                    const imageUrl = data.cheerEmotes[i].imageUrl;
+                    const name = data.cheerEmotes[i].name;
+                    const cheerEmoteElement = `<img src="${imageUrl}" class="emote"/>`;
+                    const bitsElements = `<span class="bits">${bits}</span>`
+                    messageEl.innerHTML = messageEl.innerHTML.replace(new RegExp(`\\b${name}${bits}\\b`, 'i'), cheerEmoteElement + bitsElements);
+                }
 
                 contentEl.appendChild(messageEl);
 
@@ -208,31 +241,6 @@ async function CustomEvent(data) {
             break;
 
         // YouTube Events
-        case ('YouTubeNewSubscriber'):
-            {
-                // Prüfen, ob Subscriber überhaupt angezeigt werden sollen
-                if (!showYouTubeSubscribers) break; 
-
-                // Avatar setzen oder ausblenden
-                if (showAvatar && data.avatar)
-                    avatarEl.src = data.avatar;
-                else
-                    avatarEl.style.display = 'none';
-
-                // Texte setzen
-                titleEl.innerText = `⭐ ${data.username} hat abonniert!`;
-                
-                // Da im Original kein Subtitle genutzt wurde, leeren wir diesen sicherheitshalber
-                if (typeof subtitleEl !== 'undefined') 
-                    subtitleEl.innerText = ""; 
-
-                // Content-Bereich ausblenden
-                contentEl.style.display = 'none';
-
-                // Plattform-Icon setzen
-                SetPlatformIcon(iconEl, 'youtube');
-            }
-            break;
         case ('YouTubeNewSubscriber'):
             {
                 // Avatar prüfen (exakt wie bei YouTubeNewSponsor)
