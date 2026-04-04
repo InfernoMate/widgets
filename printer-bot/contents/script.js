@@ -438,6 +438,9 @@ async function CustomEvent(data) {
                 else {
                     contentEl.style.display = 'none';
                 }
+
+                // Set the platform icon
+                // SetPlatformIcon(iconEl, 'streamelements')
             }
             break;
 
@@ -465,6 +468,10 @@ async function CustomEvent(data) {
                 else {
                     contentEl.style.display = 'none';
                 }
+
+                // Set the platform icon
+                // SetPlatformIcon(iconEl, 'fourthwall')
+
             }
             break;
         // case ('FourthwallGiftPurchase'):
@@ -546,6 +553,204 @@ async function CustomEvent(data) {
                 messageEl.innerHTML = `Danke für den Beitritt auf der <b>${FormatCurrency(data["fw.amount"], data["fw.currency"])}</b> Stufe!`;
 
                 contentEl.appendChild(messageEl);
+            }
+            break;
+
+        // Ko-fi Events
+        case ('KofiDonation'):
+            {
+                const avatarURL = await GetAvatar(data.from, 'twitch');
+                if (IsValidUrl(avatarURL))
+                    avatarEl.src = avatarURL;
+                else
+                avatarEl.style.display = 'none'
+                titleEl.style.fontSize = '2em';
+                titleEl.innerText = FormatCurrency(data.amount, data.currency);
+                subtitleEl.innerText = `${data.from}`;
+
+                if (data.message) {
+                    const messageEl = document.createElement('div');
+                    messageEl.innerHTML = `<i>${data.message}</i>`;
+
+                    contentEl.appendChild(messageEl);
+                }
+                else {
+                    contentEl.style.display = 'none';
+                }
+
+                // Set the platform icon
+                // SetPlatformIcon(iconEl, 'kofi')
+
+            }
+            break;
+        case ('KofiSubscription'):
+            {
+                const avatarURL = await GetAvatar(data.from, 'twitch');
+                if (IsValidUrl(avatarURL))
+                    avatarEl.src = avatarURL;
+                else
+                avatarEl.style.display = 'none'
+                titleEl.style.fontSize = '2em';
+                titleEl.innerText = FormatCurrency(data.amount, data.currency);
+                subtitleEl.innerText = `${data.from}`;
+
+                if (data.message) {
+                    const messageEl = document.createElement('div');
+                    messageEl.innerHTML = `<i>${data.message}</i>`;
+
+                    contentEl.appendChild(messageEl);
+                }
+                else {
+                    contentEl.style.display = 'none';
+                }
+
+                // Set the platform icon
+                // SetPlatformIcon(iconEl, 'kofi')
+
+            }
+            break;
+        case ('KofiResubscription'):
+            {
+                const avatarURL = await GetAvatar(data.from, 'twitch');
+                if (IsValidUrl(avatarURL))
+                    avatarEl.src = avatarURL;
+                else
+                avatarEl.style.display = 'none'
+                titleEl.style.fontSize = '2em';
+                titleEl.innerText = `Neues Mitglied`;
+                subtitleEl.innerText = `${data.from}`;
+
+                const messageEl = document.createElement('div');
+                messageEl.innerHTML = `Danke für den Beitritt der <b>${data.tier}</b> <i>(${FormatCurrency(data.amount, data.currency)})</i> Stufe!`;
+
+                contentEl.appendChild(messageEl);
+
+                // Set the platform icon
+                // SetPlatformIcon(iconEl, 'kofi')
+
+            }
+            break;
+        case ('KofiShopOrder'):
+            {
+                // Only print non-free orders
+                if (data.amount <= 0)
+                    return;
+
+                const avatarURL = await GetAvatar(data.from, 'twitch');
+                if (IsValidUrl(avatarURL))
+                    avatarEl.src = avatarURL;
+                else
+                avatarEl.style.display = 'none'
+                titleEl.style.fontSize = '2em';
+                titleEl.innerText = FormatCurrency(data.amount, data.currency);
+                subtitleEl.innerText = `${data.from}`;
+
+                // Zusammenfassung der Bestellung erstellen
+                const messageEl = document.createElement('div');
+                const count = parseInt(data.itemCount) || 0;
+                
+                // Grammatik-Check: "1 Artikel" vs. "X Artikel"
+                const itemText = count === 1 ? "1 Artikel" : `${count} Artikel`;
+                messageEl.innerHTML = `hat <b>${itemText}</b> im Shop gekauft!`;
+
+                // Nachricht des Käufers (Textarea-Trick für Sicherheit gegen HTML-Injection)
+                let customMessageEl = document.createElement('div');
+                const customMessage = data.message;
+                if (customMessage && customMessage.trim() !== "") {
+                    const txt = document.createElement("textarea");
+                    txt.innerHTML = customMessage;
+                    customMessageEl.innerHTML = `<br><i>"${txt.value}"</i>`;
+                }
+
+                // Dankeschön-Block
+                const thankYouEl = document.createElement('div');
+                thankYouEl.innerHTML = `<br><b>Vielen Dank für den Support!</b>`;
+
+                // Alles dem Widget-Container hinzufügen
+                contentEl.appendChild(messageEl);
+                
+                if (customMessage && customMessage.trim() !== "") {
+                    contentEl.appendChild(customMessageEl);
+                }
+                
+                contentEl.appendChild(thankYouEl);
+            }
+            break;
+
+        // Patreon Events
+        case ('PatreonPledgeCreated'):
+            {
+                // Avatar laden
+                const avatarURL = await GetAvatar(data.user.attributes.vanity, 'twitch');
+                if (IsValidUrl(avatarURL))
+                    avatarEl.src = avatarURL;
+                else
+                    avatarEl.style.display = 'none';
+                
+                titleEl.style.fontSize = '2em';
+                
+                // Betrag von Cents in Dollar umrechnen
+                const realAmount = Number(data.attributes.will_pay_amount_cents) / 100;
+                
+                titleEl.innerText = FormatCurrency(realAmount, '$'); 
+                
+                subtitleEl.innerText = `${data.user.attributes.vanity}`;
+
+                // Wir prüfen direkt, ob 'note' existiert
+                if (data.attributes && data.attributes.note) {
+                    const messageEl = document.createElement('div');
+                    messageEl.innerHTML = `<i>${data.attributes.note}</i>`;
+
+                    contentEl.appendChild(messageEl);
+                }
+                else {
+                    contentEl.style.display = 'none';
+                }
+
+                // Set the platform icon
+                // SetPlatformIcon(iconEl, 'patreon')
+            }
+            break;
+
+        // TipeeeStream Events
+        case ('TipeeeStreamDonation'):
+            {
+                const avatarURL = await GetAvatar(data.username, 'twitch');
+                if (IsValidUrl(avatarURL))
+                    avatarEl.src = avatarURL;
+                else
+                    avatarEl.style.display = 'none';
+                
+                titleEl.style.fontSize = '2em';
+                
+                // Netto-Betrag berechnen (Spende minus Gebühren)
+                const netAmount = Number(data.amount) - Number(data.fees);
+
+                // Zeigt den originalen Betrag an
+                titleEl.innerHTML = `${FormatCurrency(data.amount, data.currency)}`;
+                
+                // Neues Element für den Netto-Betrag (in Klammern) erstellen
+                const netAmountEl = document.createElement('div');
+                netAmountEl.innerHTML = `<i>(${FormatCurrency(netAmount, data.currency)})<i/>`;
+                
+                // Optional: Etwas Abstand nach unten zum Username einfügen
+                netAmountEl.style.marginBottom = '5px'; 
+                
+                // WICHTIG: Das Element exakt VOR dem Username (subtitleEl) in das Dokument einfügen!
+                subtitleEl.parentNode.insertBefore(netAmountEl, subtitleEl);
+
+                // Username setzen
+                subtitleEl.innerText = `${data.username}`;
+
+                if (data.message) {
+                    const messageEl = document.createElement('div');
+                    messageEl.innerHTML = `<i>${data.message}</i>`;
+
+                    contentEl.appendChild(messageEl);
+                }
+
+                // // Set the platform icon
+                // SetPlatformIcon(iconEl, 'tipeeestream');
             }
             break;
 
