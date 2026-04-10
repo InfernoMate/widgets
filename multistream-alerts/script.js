@@ -511,7 +511,7 @@ async function TwitchCheer(data) {
 		return;
 
 	// Set the text
-	const username = data.message.displayName;
+	const username = data.user_name;
 	const bits = data.bits;
 	let message = ConstructMessageFromParts(data.parts);
 

@@ -744,7 +744,7 @@ async function CustomEvent(data) {
 
                 if (data.message) {
                     const messageEl = document.createElement('div');
-                    messageEl.innerHTML = `<i>${data.message}</i>`;
+                    messageEl.innerHTML = `<i>${data.message}<i/>`;
 
                     contentEl.appendChild(messageEl);
                 }
