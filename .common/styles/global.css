@@ -21,7 +21,7 @@ GitHub: https://github.com/nuttylmao
 :root {
     --domain: nutty;
     --background-color: #181818;
-    --accent-color: #2196f3;
+    --accent-color: #d84613;
     --success-color: #3be477;
     --confirm-flash: #3be47680;
     --button-color: #2e2e2e;
@@ -326,6 +326,17 @@ iframe {
 /*** DIALOG ***/
 /**************/
 
+.dialog-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    backdrop-filter: blur(var(--blur-intensity));
+}
+
 .dialog {
     font-size: 1em;
     background-color: var(--dialog-background);
@@ -342,7 +353,7 @@ iframe {
     border: 1px solid #40404080;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    /* above overlay */
+    backdrop-filter: blur(var(--blur-intensity));
 }
 
 .dialog-nav-button {
@@ -399,4 +410,98 @@ select {
     color: #fff;
     cursor: pointer;
     min-width: 8em;
+}
+
+/***************/
+/*** SIDEBAR ***/
+/***************/
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    /* expanded width */
+    height: 100vh;
+    color: #fff;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    backdrop-filter: blur(var(--blur-intensity));
+    /* <-- adds the blur */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+#sidebar.collapsed {
+    width: 3em;
+    /* collapsed width */
+}
+
+#sidebar button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5em;
+    padding: 0.5em 1em;
+    border-radius: 0;
+}
+
+#sidebar .sidebar-menu {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+#sidebar.collapsed .sidebar-menu {
+    opacity: 1;
+}
+
+#collapse-sidebar-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    justify-content: flex-end !important;
+}
+
+.sidebar-item {
+    padding: 0.75em 1em;
+    text-align: left;
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1em;
+    cursor: pointer;
+    white-space: nowrap;
+    /* prevent line breaks */
+    overflow: hidden;
+    /* hide overflow text */
+    text-overflow: ellipsis;
+    /* optional: show "..." if needed */
+}
+
+#sidebar.collapsed .sidebar-item {
+    justify-content: center;
+    padding: 0.75em 0;
+}
+
+.sidebar-label {
+    display: inline-block;
+}
+
+#sidebar.collapsed .sidebar-label {
+    display: none;
+}
+
+.sidebar-item svg {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+}
+
+.sidebar-spacer {
+    flex: 1;
+}
+
+.sidebar-item:hover {
+    background-color: #333;
 }

@@ -279,6 +279,23 @@
             "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
         },
         {
+			"id": "showTwitchPowerUpRedemptions",
+			"label": "Power-Up Einlösungen",
+			"description": "",
+			"type": "checkbox",
+			"defaultValue": true,
+			"group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+		},
+		{
+			"id": "twitchPowerUpRedemptionAction",
+			"label": "",
+			"description": "Führe auch diese Streamer.bot Aktion aus",
+			"type": "sb-actions",
+			"defaultValue": "",
+			"showIf": "showTwitchPowerUpRedemptions",
+			"group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+		},
+        {
             "id": "showTwitchCheers",
             "label": "Cheers",
             "description": "",

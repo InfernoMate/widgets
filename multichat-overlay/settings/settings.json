@@ -193,6 +193,14 @@
             "group": "Allgemein"
         },
         {
+			"id": "highlightMentions",
+			"label": "Highlight Erwähnungen",
+			"description": "Hebe Nachrichten hervor, die die Streamer erwähnen",
+			"type": "checkbox",
+			"defaultValue": true,
+			"group": "Allgemein"
+		},
+        {
             "id": "imageEmbedPermissionLevel",
             "label": "Bilder einbetten",
             "description": "Bilder für diese Benutzer automatisch einbetten",
@@ -282,6 +290,14 @@
             "defaultValue": true,
             "group": "Welche Twitch-Nachrichten möchtest du sehen?"
         },
+        {
+			"id": "showTwitchPowerUpRedemptions",
+			"label": "Power-Up Einlösungen",
+			"description": "",
+			"type": "checkbox",
+			"defaultValue": true,
+			"group": "Welche Twitch-Nachrichten möchtest du sehen?"
+		},
         {
             "id": "showTwitchRaids",
             "label": "Raids",
