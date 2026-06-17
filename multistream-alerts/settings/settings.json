@@ -1,0 +1,648 @@
+{
+    "settings": [
+        {
+            "id": "testWidgetButton",
+            "label": "Test-Benachrichtigung senden",
+            "description": "",
+            "type": "button",
+            "callFunction": "testWidget",
+            "group": ""
+        },
+        {
+            "id": "showAvatar",
+            "label": "Avatar anzeigen",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "font",
+            "label": "Schriftart",
+            "description": "",
+            "type": "text",
+            "defaultValue": "",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "fontSize",
+            "label": "Schriftgröße",
+            "description": "",
+            "type": "number",
+            "min": 1,
+            "max": 120,
+            "defaultValue": 20,
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "fontColor",
+            "label": "Schriftfarbe",
+            "description": "",
+            "type": "color",
+            "defaultValue": "#FFFFFF",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "useCustomBackground",
+            "label": "Benutzerdefinierte Hintergrundfarbe verwenden",
+            "description": "Wenn deaktiviert, werden stattdessen die Plattformfarben verwendet",
+            "type": "checkbox",
+            "defaultValue": false,
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "background",
+            "label": "Hintergrund",
+            "description": "",
+            "type": "color",
+            "defaultValue": "#2196f3",
+            "showIf": "useCustomBackground",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "opacity",
+            "label": "Hintergrund-Deckkraft",
+            "description": "",
+            "type": "number",
+            "defaultValue": "0.85",
+            "min": 0,
+            "max": 1,
+            "step": ".01",
+            "showIf": "useCustomBackground",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "textAlignment",
+            "label": "Textausrichtung",
+            "description": "",
+            "type": "select",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Links"
+                },
+                {
+                    "value": "center",
+                    "label": "Zentriert"
+                },
+                {
+                    "value": "right",
+                    "label": "Rechts"
+                }
+            ],
+            "defaultValue": "left",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "alignment",
+            "label": "Ausrichtung der Benachrichtigung",
+            "description": "",
+            "type": "select",
+            "options": [
+                {
+                    "value": "align-to-top",
+                    "label": "Oben ausrichten"
+                },
+                {
+                    "value": "align-to-center",
+                    "label": "Mittig ausrichten"
+                },
+                {
+                    "value": "align-to-bottom",
+                    "label": "Unten ausrichten"
+                }
+            ],
+            "defaultValue": "align-to-bottom",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "hideAfter",
+            "label": "Ausblenden nach",
+            "description": "Benachrichtigungen werden nach X Sekunden ausgeblendet",
+            "type": "number",
+            "min": 1,
+            "max": 120,
+            "defaultValue": 8,
+            "group": "Allgemein"
+        },
+        {
+            "id": "showAnimation",
+            "label": "Einblend-Animation",
+            "description": "",
+            "type": "select",
+            "options": [
+                {
+                    "value": "fade-in",
+                    "label": "Einblenden"
+                },
+                {
+                    "value": "slide-in-from-top",
+                    "label": "Von oben einblenden"
+                },
+                {
+                    "value": "slide-in-from-bottom",
+                    "label": "Von unten einblenden"
+                },
+                {
+                    "value": "slide-in-from-left",
+                    "label": "Von links einblenden"
+                },
+                {
+                    "value": "slide-in-from-right",
+                    "label": "Von rechts einblenden"
+                }
+            ],
+            "defaultValue": "slide-in-from-bottom",
+            "group": "Allgemein"
+        },
+        {
+            "id": "hideAnimation",
+            "label": "Ausblend-Animation",
+            "description": "",
+            "type": "select",
+            "options": [
+                {
+                    "value": "fade-out",
+                    "label": "Ausblenden"
+                },
+                {
+                    "value": "slide-out-top",
+                    "label": "Nach oben ausblenden"
+                },
+                {
+                    "value": "slide-out-bottom",
+                    "label": "Nach unten ausblenden"
+                },
+                {
+                    "value": "slide-out-left",
+                    "label": "Nach links ausblenden"
+                },
+                {
+                    "value": "slide-out-right",
+                    "label": "Nach rechts ausblenden"
+                }
+            ],
+            "defaultValue": "slide-out-bottom",
+            "group": "Allgemein"
+        },
+        {
+            "id": "playSounds",
+            "label": "Soundeffekt",
+            "description": "Benachrichtigungston bei Alert abspielen",
+            "type": "select",
+            "options": [
+                {
+                    "value": true,
+                    "label": "Ja"
+                },
+                {
+                    "value": false,
+                    "label": "Nein"
+                }
+            ],
+            "defaultValue": true,
+            "group": "Allgemein"
+        },
+        {
+            "id": "globalShowAction",
+            "label": "Einblend-Aktion",
+            "description": "Führe diese Streamer.bot Aktion zu Beginn jedes Alerts aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "group": "Allgemein"
+        },
+        {
+            "id": "globalHideAction",
+            "label": "Ausblend-Aktion",
+            "description": "Führe diese Streamer.bot Aktion am Ende jedes Alerts aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "group": "Allgemein"
+        },
+        {
+            "id": "showMesesages",
+            "label": "Nachrichten anzeigen",
+            "description": "Wie z. B. Spenden-Nachrichten, Abonnenten-Nachrichten usw.",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Allgemein"
+        },
+        {
+            "id": "showTwitchFollows",
+            "label": "Neue Follower",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "twitchFollowAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showTwitchFollows",
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showTwitchSubs",
+            "label": "Neue Abonnenten",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "twitchSubAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showTwitchSubs",
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showTwitchChannelPointRedemptions",
+            "label": "Kanalpunkte-Einlösungen",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "twitchChannelPointRedemptionAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showTwitchChannelPointRedemptions",
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+			"id": "showTwitchPowerUpRedemptions",
+			"label": "Power-Up Einlösungen",
+			"description": "",
+			"type": "checkbox",
+			"defaultValue": true,
+			"group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+		},
+		{
+			"id": "twitchPowerUpRedemptionAction",
+			"label": "",
+			"description": "Führe auch diese Streamer.bot Aktion aus",
+			"type": "sb-actions",
+			"defaultValue": "",
+			"showIf": "showTwitchPowerUpRedemptions",
+			"group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+		},
+        {
+            "id": "showTwitchCheers",
+            "label": "Cheers",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "twitchCheerAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showTwitchCheers",
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showTwitchRaids",
+            "label": "Raids",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "twitchRaidAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showTwitchRaids",
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showTwitchWatchStreaks",
+            "label": "Zuschauer-Serien",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "twitchWatchStreaksAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showTwitchWatchStreaks",
+            "group": "Welche Twitch-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showYouTubeSubscribers",
+            "label": "Neue Abonnenten",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche YouTube-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "youtubeSubAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showYouTubeSubscribers",
+            "group": "Welche YouTube-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showYouTubeSuperChats",
+            "label": "Super Chats",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche YouTube-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "youtubeSuperChatAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showYouTubeSuperChats",
+            "group": "Welche YouTube-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showYouTubeSuperStickers",
+            "label": "Super Stickers",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche YouTube-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "youtubeSuperStickerAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showYouTubeSuperStickers",
+            "group": "Welche YouTube-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showYouTubeMemberships",
+            "label": "Mitgliedschaften",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche YouTube-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "youtubeMembershipAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showYouTubeMemberships",
+            "group": "Welche YouTube-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showKickFollows",
+            "label": "Neue Follower",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Kick-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "KickFollowAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showKickFollows",
+            "group": "Welche Kick-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showKickSubs",
+            "label": "Neue Abonnenten",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Kick-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "kickSubAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showKickSubs",
+            "group": "Welche Kick-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showKickChannelPointRedemptions",
+            "label": "Kanalpunkte-Einlösungen",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Kick-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "kickChannelPointRedemptionAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showKickChannelPointRedemptions",
+            "group": "Welche Kick-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showKickHosts",
+            "label": "Hosts",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Kick-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "kickHostAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showKickHosts",
+            "group": "Welche Kick-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showKickGifts",
+            "label": "Geschenke",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Kick-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "kickGiftAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showKickGifts",
+            "group": "Welche Kick-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "enableTikTokSupport",
+            "label": "TikTok-Unterstützung aktivieren",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": false,
+            "group": "Welche TikTok-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showTikTokGifts",
+            "label": "Geschenke",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "showIf": "enableTikTokSupport",
+            "group": "Welche TikTok-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "tiktokGiftAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showTikTokGifts",
+            "group": "Welche TikTok-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showTikTokSubs",
+            "label": "Neue Abonnenten",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "showIf": "enableTikTokSupport",
+            "group": "Welche TikTok-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "tiktokSubAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showTikTokSubs",
+            "group": "Welche TikTok-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showStreamElementsTips",
+            "label": "StreamElements Tipps",
+            "description": "<a href=\"https://docs.streamer.bot/guide/integrations/streamelements\" target=\"_blank\">Klicken zum Verbinden</a>",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Spenden-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "streamelementsTipAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showStreamElementsTips",
+            "group": "Welche Spenden-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showPatreonMemberships",
+            "label": "Patreon-Mitgliedschaften",
+            "description": "<a href=\"https://docs.streamer.bot/guide/integrations/patreon\" target=\"_blank\">Klicken zum Verbinden</a>",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Spenden-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "patreonMembershipActions",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showPatreonMemberships",
+            "group": "Welche Spenden-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showKofiDonations",
+            "label": "Ko-fi Spenden",
+            "description": "<a href=\"https://docs.streamer.bot/guide/integrations/ko-fi\" target=\"_blank\">Klicken zum Verbinden</a>",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Spenden-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "kofiDonationAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showKofiDonations",
+            "group": "Welche Spenden-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showTipeeeStreamDonations",
+            "label": "TipeeeStream Spenden",
+            "description": "<a href=\"https://docs.streamer.bot/guide/integrations/tipeee-stream\" target=\"_blank\">Klicken zum Verbinden</a>",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Spenden-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "tipeeestreamDonationAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showTipeeeStreamDonations",
+            "group": "Welche Spenden-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "showFourthwallAlerts",
+            "label": "Fourthwall Benachrichtigungen",
+            "description": "<a href=\"https://docs.streamer.bot/guide/integrations/fourthwall\" target=\"_blank\">Klicken zum Verbinden</a>",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Spenden-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "fourthwallAlertAction",
+            "label": "",
+            "description": "Führe auch diese Streamer.bot Aktion aus",
+            "type": "sb-actions",
+            "defaultValue": "",
+            "showIf": "showFourthwallAlerts",
+            "group": "Welche Spenden-Benachrichtigungen möchtest du sehen?"
+        },
+        {
+            "id": "address",
+            "label": "IP-Adresse",
+            "description": "",
+            "type": "text",
+            "defaultValue": "127.0.0.1",
+            "group": "Streamer.bot Websocket Server Einstellungen"
+        },
+        {
+            "id": "port",
+            "label": "Port",
+            "description": "",
+            "type": "text",
+            "defaultValue": "8080",
+            "group": "Streamer.bot Websocket Server Einstellungen"
+        }
+    ]
+}
