@@ -777,9 +777,9 @@ async function TwitchRaid(data) {
 async function TwitchWatchStreak(data) {
 	if (!showTwitchWatchStreaks)
 		return;
-
+	// TODO: Streamer.bot v1.0.5-alpha3 changed the data sent with this event, so for backwards compatibility we need to check for both the old and new properties
 	// Render avatars
-	const avatarURL = await GetAvatar(data.user.login, 'twitch');
+    const avatarURL = await GetAvatar(data.user?.login ?? data.userName ?? data.user_login, 'twitch');
 
 	// Set the text
 	// TODO: Streamer.bot v1.0.5-alpha3 changed the data sent with this event, so for backwards compatibility we need to check for both the old and new properties
