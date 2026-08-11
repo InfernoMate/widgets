@@ -1734,6 +1734,8 @@ function UpdateAlertBox(platform, avatarURL, headerText, descriptionText, attrib
 	sbData.boxHeight2 = (message && showMesesages) ? theContentThatShowsLastInsteadOfFirst.offsetHeight : 0;
 	sbData.alertDuration = hideAfter * 1000;
 
+	sbData.alertUsername = username;
+
 	console.log(sbData);
 
 	// Run the Streamer.bot action if there is one
