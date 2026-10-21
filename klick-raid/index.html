@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>InfernoMate | Klick Raid</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
+    <script src="https://unpkg.com/@streamerbot/client/dist/streamerbot-client.js"></script>
+</head>
+<body>
+    <div id="statusContainer">Verbinden...</div>
+
+    <div id="overlay">
+        <!-- Live Video -->
+        <video id="streamVideo" playsinline autoplay></video>
+        
+        <div id="mainContainer">
+            <div id="alertBox">
+                <div id="previewContent">
+                    <img id="avatar" src="" alt="Avatar">
+                    <div class="text-info">
+                        <span id="username">Streamer</span>
+                        <span id="streamTitle">Titel</span>
+                        <span id="gameLabel">Kategorie: <span id="game">Kategorie</span></span>
+                        <span id="viewerLabel"><span id="viewers">0</span> <span style="color: var(--font-color); font-weight: normal; font-size: 0.9em; opacity: 0.8; text-shadow: none;">Zuschauer</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+{
+    "settings": [
+        {
+            "id": "testBtn",
+            "label": "Widget Testen",
+            "description": "Spielt eine Vorschau-Animation im Overlay ab.",
+            "type": "button",
+            "onClick": "test",
+            "callFunction": "testWidget",
+            "group": ""
+        },
+        {
+            "id": "font",
+            "label": "Schriftart",
+            "type": "text",
+            "defaultValue": "",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "fontSize",
+            "label": "Schriftgröße",
+            "description": "Skaliert das gesamte Widget (Texte & Avatar)",
+            "type": "number",
+            "defaultValue": "30",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "fontColor",
+            "label": "Schriftfarbe",
+            "type": "color",
+            "defaultValue": "#FFFFFF",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "accentColor",
+            "label": "Akzentfarbe",
+            "description": "Farbe für Rahmen und Name",
+            "type": "color",
+            "defaultValue": "#d84613",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "viewersColor",
+            "label": "Zuschauer Farbe",
+            "description": "Farbe für die Zuschaueranzahl",
+            "type": "color",
+            "defaultValue": "#d84613",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "background",
+            "label": "Karten Hintergrund",
+            "type": "color",
+            "defaultValue": "#08080e",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "opacity",
+            "label": "Karten Deckkraft",
+            "description": "0 = Unsichtbar, 1 = Komplett deckend",
+            "type": "number",
+            "defaultValue": "0.95",
+            "min": 0,
+            "max": 1,
+            "step": ".01",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "alignment",
+            "label": "Ausrichtung im Stream",
+            "description": "Wo soll die Karte erscheinen?",
+            "type": "select",
+            "options": [
+                { "value": "align-to-top", "label": "Oben" },
+                { "value": "center", "label": "Zentriert" },
+                { "value": "align-to-bottom", "label": "Unten" }
+            ],
+            "defaultValue": "align-to-top",
+            "group": "Layout"
+        },
+        {
+            "id": "address",
+            "label": "Address",
+            "description": "Streamer.bot Websocket Server Address",
+            "type": "text",
+            "defaultValue": "127.0.0.1",
+            "group": "Streamer.bot Websocket Server Einstellungen"
+        },
+        {
+            "id": "port",
+            "label": "Port",
+            "description": "Streamer.bot Websocket Server Port",
+            "type": "text",
+            "defaultValue": "8080",
+            "group": "Streamer.bot Websocket Server Einstellungen"
+        }
+    ]
+}
