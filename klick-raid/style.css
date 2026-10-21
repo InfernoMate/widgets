@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --accent-color: #d84613; 
+    --viewers-color: #d84613;
+    --font-color: #ffffff;
+    --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    --font-size: 30px;
+    --bg-color: rgba(18, 18, 22, 0.95);
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+    font-family: var(--font-family);
+    font-size: var(--font-size); /* Hier dockt die JS Variable an! */
+    color: var(--font-color);
+    
+    /* Text-Shadow aus dem Chat-Widget übernommen */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#statusContainer {
+    font-weight: 500;
+    font-size: 0.8em;
+    text-align: center;
+    background-color: #D12025;
+    color: white;
+    padding: 0.3em 0.6em;
+    border-radius: 0.3em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+#overlay {
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    background: #000;
+}
+
+#overlay.visible {
+    opacity: 1;
+}
+
+#streamVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease-in-out;
+    opacity: 1;
+    z-index: 0;
+}
+
+#streamVideo.switching {
+    opacity: 0;
+}
+
+#mainContainer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+#alertBox {
+    position: absolute;
+    left: 50%;
+    
+    padding: 0;
+    border-radius: 2em;
+    filter: drop-shadow(0px 0.2em 0.8em rgba(0, 0, 0, 0.8));
+    overflow: hidden;
+    opacity: 0;
+    
+    background: var(--bg-color);
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--accent-color);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+#previewContent {
+    position: absolute;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0;
+    padding: 0.6em 1.4em; 
+    box-sizing: border-box;
+    gap: 1.2em;
+    width: max-content;
+}
+
+#avatar {
+    display: block;
+    height: 3em;     /* Skaliert jetzt mit der Font-Size mit! */
+    width: 3em;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid var(--accent-color);
+}
+
+.text-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    white-space: nowrap; 
+}
+
+#username { font-size: 0.8em; font-weight: 800; color: var(--accent-color); }
+#streamTitle { font-size: 0.45em; font-style: italic; opacity: 0.9; margin: 1px 0; }
+#gameLabel { font-size: 0.4em; font-weight: 500; opacity: 0.7; }
+#viewerLabel { font-size: 0.45em; font-weight: 600; margin-top: 2px; opacity: 0.9; }
+
+#viewers { 
+    color: var(--viewers-color); 
+    font-weight: 700; 
+    text-shadow: 0 0 6px var(--viewers-color); 
+}

@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300..700;1,300..700&display=swap');
+
+:root {
+    --panel-color: #111111;
+}
+
+#main-container {
+    margin: 0 !important;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-wrapper {
+    position: relative;
+    display: flex;
+    width: 1000px !important; 
+    max-width: none !important;
+    height: auto !important; 
+    border-radius: 35px; 
+    overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4), 0 5px 20px rgba(0, 0, 0, 0.2);
+    font-family: "DM Sans", sans-serif;
+    background: #111;
+    opacity: 0; 
+}
+
+.cover-side {
+    position: relative;
+    width: 325px !important; 
+    min-width: 325px !important;
+    align-self: stretch;
+    overflow: hidden;
+    background: #000;
+}
+
+.cover-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease;
+}
+
+.cover-side::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--panel-color));
+    z-index: 2;
+    transition: background 0.5s ease;
+}
+
+.info-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 45px 40px 20px;
+    background: var(--panel-color); 
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.5s ease;
+}
+
+.info-side::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.title-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    margin: 0 0 8px; 
+}
+
+.text-mask {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 25px), transparent 100%);
+    mask-image: linear-gradient(to right, black calc(100% - 25px), transparent 100%);
+}
+
+#artist-wrapper { 
+    margin: 0 0 6px; 
+    line-height: 1.2; /* Fügt vertikalen Raum für den Text hinzu */
+    display: flex;
+    align-items: center;
+}
+#album-wrapper { margin: 0 0 25px; }
+
+.song-title, .song-artist, .song-album {
+    display: inline-block;
+    white-space: nowrap;
+    margin: 0; 
+    position: relative;
+}
+
+.song-title {
+    font-size: 2.6em;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.song-artist {
+    font-size: 2em;
+    font-weight: 300;
+    opacity: 0.75;
+}
+
+.song-album {
+    font-size: 1.6em;
+    font-weight: 300;
+    font-style: italic;
+    opacity: 0.5;
+}
+
+/* Dynamische Zeit aus JS, Default 15s */
+.scrolling {
+    animation: scrollText var(--scroll-duration, 15s) ease-in-out infinite;
+}
+
+@keyframes scrollText {
+    0%, 10% { transform: translateX(0); } /* 10% Pause am Start */
+    45%, 65% { transform: translateX(var(--scroll-dist)); } /* Gemütliches Scrollen nach links, dann 20% Pause am Ende */
+    90%, 100% { transform: translateX(0); } /* Rückwärts scrollen, 10% Pause bevor es von vorn losgeht */
+}
+
+.progress-section {
+    position: relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 5px;
+    transition: background-color 0.5s ease;
+}
+
+.progress-knob {
+    position: absolute;
+    top: 10px;
+    left: 0%;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.progress-times {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 1.5em;
+    opacity: 0.5;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+.explicit-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 7px;
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-left: 15px;
+    flex-shrink: 0;
+}

@@ -1,0 +1,326 @@
+{
+    "settings": [
+        {
+            "id": "language",
+            "label": "Sprache",
+            "description": "",
+            "type": "select",
+            "options": [
+                { "value": "en", "label": "English (Englisch)" },
+                { "value": "ar", "label": "العربية (Arabisch)" },
+                { "value": "bg", "label": "Български (Bulgarisch)" },
+                { "value": "zh-cn", "label": "中文 (Chinesisch vereinfacht)" },
+                { "value": "zh-tw", "label": "中文 (Chinesisch traditionell)" },
+                { "value": "cs", "label": "Čeština (Tschechisch)" },
+                { "value": "da", "label": "Dansk (Dänisch)" },
+                { "value": "nl", "label": "Nederlands (Niederländisch)" },
+                { "value": "fi", "label": "Suomi (Finnisch)" },
+                { "value": "fr", "label": "Français (Französisch)" },
+                { "value": "de", "label": "Deutsch" },
+                { "value": "el", "label": "Ελληνικά (Griechisch)" },
+                { "value": "he", "label": "עברית (Hebräisch)" },
+                { "value": "hi", "label": "हिन्दी (Hindi)" },
+                { "value": "hu", "label": "Magyar (Ungarisch)" },
+                { "value": "id", "label": "Bahasa Indonesia (Indonesisch)" },
+                { "value": "it", "label": "Italiano (Italienisch)" },
+                { "value": "ja", "label": "日本語 (Japanisch)" },
+                { "value": "ko", "label": "한국어 (Koreanisch)" },
+                { "value": "nb", "label": "Norsk bokmål (Norwegisch Bokmål)" },
+                { "value": "pl", "label": "Polski (Polnisch)" },
+                { "value": "pt", "label": "Português (Portugiesisch)" },
+                { "value": "ro", "label": "Română (Rumänisch)" },
+                { "value": "ru", "label": "Русский (Russisch)" },
+                { "value": "sk", "label": "Slovenčina (Slowakisch)" },
+                { "value": "es", "label": "Español (Spanisch)" },
+                { "value": "sv", "label": "Svenska (Schwedisch)" },
+                { "value": "th", "label": "ไทย (Thai)" },
+                { "value": "tr", "label": "Türkçe (Türkisch)" },
+                { "value": "uk", "label": "Українська (Ukrainisch)" },
+                { "value": "vi", "label": "Tiếng Việt (Vietnamesisch)" }
+            ],
+            "defaultValue": "de",
+            "group": "Allgemein"
+        },
+        {
+            "id": "timezone",
+            "label": "Zeitzone",
+            "description": "Gib eine IANA-Zeitzone ein (z. B. America/New_York, Europe/London). Leer lassen, um die lokale Zeit zu verwenden.",
+            "type": "timezone",
+            "defaultValue": "",
+            "group": "Allgemein"
+        },
+        {
+            "id": "font",
+            "label": "Schriftart",
+            "description": "<a href=\"ms-settings:fonts\">Installierte Schriftarten überprüfen</a>",
+            "type": "font",
+            "defaultValue": "",
+            "group": "Darstellung"
+        },
+        {
+            "id": "textAlignment",
+            "label": "Textausrichtung",
+            "description": "",
+            "type": "select",
+            "options": [
+                { "value": "left", "label": "Links" },
+                { "value": "center", "label": "Zentriert" },
+                { "value": "right", "label": "Rechts" }
+            ],
+            "defaultValue": "center",
+            "group": "Darstellung"
+        },
+        {
+            "id": "enableLine1",
+            "label": "Zeile 1 aktivieren",
+            "description": "Die erste Zeile der Uhr anzeigen",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Darstellung"
+        },
+        {
+            "id": "line1Format",
+            "label": "Format",
+            "description": "<a href='https://day.js.org/docs/en/display/format' target='_blank'>Klicke hier für Formatierungsoptionen</a>",
+            "type": "text",
+            "defaultValue": "hh:mm:ss [Uhr]",
+            "showIf": "enableLine1",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line1FontSize",
+            "label": "Schriftgröße",
+            "description": "",
+            "type": "number",
+            "min": 1,
+            "max": 120,
+            "defaultValue": 50,
+            "showIf": "enableLine1",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line1FontWeight",
+            "label": "Schriftstärke",
+            "description": "",
+            "type": "select",
+            "options": [
+                { "value": "100", "label": "Dünn" },
+                { "value": "200", "label": "Extra Leicht" },
+                { "value": "300", "label": "Leicht" },
+                { "value": "400", "label": "Normal" },
+                { "value": "500", "label": "Medium" },
+                { "value": "600", "label": "Halbfett" },
+                { "value": "700", "label": "Fett" },
+                { "value": "800", "label": "Extra Fett" },
+                { "value": "900", "label": "Schwarz (Besonders Fett)" }
+            ],
+            "defaultValue": "800",
+            "showIf": "enableLine1",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line1FontColor",
+            "label": "Schriftfarbe",
+            "description": "",
+            "type": "color",
+            "defaultValue": "#ffffff",
+            "showIf": "enableLine1",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line1FontOpacity",
+            "label": "Deckkraft der Schrift",
+            "description": "",
+            "type": "number",
+            "defaultValue": "1",
+            "min": 0,
+            "max": 1,
+            "step": ".01",
+            "showIf": "enableLine1",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line1TextTransform",
+            "label": "Texttransformation",
+            "description": "",
+            "type": "select",
+            "options": [
+                { "value": "none", "label": "Normal" },
+                { "value": "uppercase", "label": "Großbuchstaben" },
+                { "value": "lowercase", "label": "Kleinbuchstaben" },
+                { "value": "capitalize", "label": "Wortanfang groß" }
+            ],
+            "defaultValue": "uppercase",
+            "showIf": "enableLine1",
+            "group": "Darstellung"
+        },
+        {
+            "id": "enableLine2",
+            "label": "Zeile 2 aktivieren",
+            "description": "Die zweite Zeile der Uhr anzeigen",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Darstellung"
+        },
+        {
+            "id": "line2Format",
+            "label": "Format",
+            "description": "<a href='https://day.js.org/docs/en/display/format' target='_blank'>Klicke hier für Formatierungsoptionen</a>",
+            "type": "text",
+            "defaultValue": "dddd D. MMMM YYYY",
+            "showIf": "enableLine2",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line2FontSize",
+            "label": "Schriftgröße",
+            "description": "",
+            "type": "number",
+            "min": 1,
+            "max": 120,
+            "defaultValue": 40,
+            "showIf": "enableLine2",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line2FontWeight",
+            "label": "Schriftstärke",
+            "description": "",
+            "type": "select",
+            "options": [
+                { "value": "100", "label": "Dünn" },
+                { "value": "200", "label": "Extra Leicht" },
+                { "value": "300", "label": "Leicht" },
+                { "value": "400", "label": "Normal" },
+                { "value": "500", "label": "Medium" },
+                { "value": "600", "label": "Halbfett" },
+                { "value": "700", "label": "Fett" },
+                { "value": "800", "label": "Extra Fett" },
+                { "value": "900", "label": "Schwarz (Besonders Fett)" }
+            ],
+            "defaultValue": "400",
+            "showIf": "enableLine2",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line2FontColor",
+            "label": "Schriftfarbe",
+            "description": "",
+            "type": "color",
+            "defaultValue": "#ffffff",
+            "showIf": "enableLine2",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line2FontOpacity",
+            "label": "Deckkraft der Schrift",
+            "description": "",
+            "type": "number",
+            "defaultValue": "0.9",
+            "min": 0,
+            "max": 1,
+            "step": ".01",
+            "showIf": "enableLine2",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line2TextTransform",
+            "label": "Texttransformation",
+            "description": "",
+            "type": "select",
+            "options": [
+                { "value": "none", "label": "Normal" },
+                { "value": "uppercase", "label": "Großbuchstaben" },
+                { "value": "lowercase", "label": "Kleinbuchstaben" },
+                { "value": "capitalize", "label": "Wortanfang groß" }
+            ],
+            "defaultValue": "uppercase",
+            "showIf": "enableLine2",
+            "group": "Darstellung"
+        },
+        {
+            "id": "enableLine3",
+            "label": "Zeile 3 aktivieren",
+            "description": "Die dritte Zeile der Uhr anzeigen",
+            "type": "checkbox",
+            "defaultValue": false,
+            "group": "Darstellung"
+        },
+        {
+            "id": "line3Format",
+            "label": "Format",
+            "description": "<a href='https://day.js.org/docs/en/display/format' target='_blank'>Klicke hier für Formatierungsoptionen</a>",
+            "type": "text",
+            "defaultValue": "ddd DD. MMM YYYY HH:mm:ss [Uhr]",
+            "showIf": "enableLine3",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line3FontSize",
+            "label": "Schriftgröße",
+            "description": "",
+            "type": "number",
+            "min": 1,
+            "max": 120,
+            "defaultValue": 30,
+            "showIf": "enableLine3",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line3FontWeight",
+            "label": "Schriftstärke",
+            "description": "",
+            "type": "select",
+            "options": [
+                { "value": "100", "label": "Dünn" },
+                { "value": "200", "label": "Extra Leicht" },
+                { "value": "300", "label": "Leicht" },
+                { "value": "400", "label": "Normal" },
+                { "value": "500", "label": "Medium" },
+                { "value": "600", "label": "Halbfett" },
+                { "value": "700", "label": "Fett" },
+                { "value": "800", "label": "Extra Fett" },
+                { "value": "900", "label": "Schwarz (Besonders Fett)" }
+            ],
+            "defaultValue": "600",
+            "showIf": "enableLine3",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line3FontColor",
+            "label": "Schriftfarbe",
+            "description": "",
+            "type": "color",
+            "defaultValue": "#ffffff",
+            "showIf": "enableLine3",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line3FontOpacity",
+            "label": "Deckkraft der Schrift",
+            "description": "",
+            "type": "number",
+            "defaultValue": "1",
+            "min": 0,
+            "max": 1,
+            "step": ".01",
+            "showIf": "enableLine3",
+            "group": "Darstellung"
+        },
+        {
+            "id": "line3TextTransform",
+            "label": "Texttransformation",
+            "description": "",
+            "type": "select",
+            "options": [
+                { "value": "none", "label": "Normal" },
+                { "value": "uppercase", "label": "Großbuchstaben" },
+                { "value": "lowercase", "label": "Kleinbuchstaben" },
+                { "value": "capitalize", "label": "Wortanfang groß" }
+            ],
+            "defaultValue": "none",
+            "showIf": "enableLine3",
+            "group": "Darstellung"
+        }
+    ]
+}

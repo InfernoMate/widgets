@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/.common/styles/global.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="/.common/utils/helpers.js"></script>
+</head>
+
+<body>
+    <div id="sidebar" class="collapsed">
+        <button id="collapse-sidebar-btn" class="sidebar-btn" onclick="ToggleSidebar()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm5-2v16" />
+            </svg>
+        </button>
+        
+        <div class="sidebar-menu">
+            <button class="sidebar-item active" data-tab="followed_same" onclick="SwitchCategory(this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <span class="sidebar-label">Gleiches Spiel <span class="tab-count" id="cnt-followed_same">0</span></span>
+            </button>
+            <button class="sidebar-item" data-tab="followed_diff" onclick="SwitchCategory(this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                <span class="sidebar-label">Andere Kategorien <span class="tab-count" id="cnt-followed_diff">0</span></span>
+            </button>
+            <button class="sidebar-item" data-tab="unfollowed" onclick="SwitchCategory(this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                <span class="sidebar-label">Entdecken <span class="tab-count" id="cnt-unfollowed">0</span></span>
+            </button>
+
+            <hr class="divider" style="margin: 0.5em 0; border-top: 1px solid #40404080;">
+
+            <button class="sidebar-item" data-tab="incoming_raids" onclick="SwitchCategory(this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11l-5-5-5 5M12 6v12"/></svg>
+                <span class="sidebar-label">Dich geraidet <span class="tab-count" id="cnt-incoming_raids">0</span></span>
+            </button>
+            <button class="sidebar-item" onclick="ShowHistoryDialog(true)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3M21 12a9 9 0 1 1-9-9" /></svg>
+                <span class="sidebar-label">Raid Verlauf</span>
+            </button>
+
+            <div id="sidebar-status-container">
+                <span id="parent-live-dot"></span>
+                <div style="display: flex; flex-direction: column; min-width: 0;">
+                    <span id="parent-live-label">Offline</span>
+                    <span id="parent-game-badge">—</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-container">
+        <div class="control-bar">
+            <div class="field search-field">
+                <input type="text" id="search-input" placeholder="Nach Twitch-User suchen..." autocomplete="off">
+                <button id="search-btn" class="search-btn-inside" title="Suchen">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <button id="refresh-btn" class="refresh-btn" title="Aktualisieren">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="currentColor"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            </button>
+        </div>
+
+        <div id="preview-bar" class="callout" style="display: none; flex-direction: row; align-items: center; justify-content: space-between; padding: 0.6em 1em; border: 1px solid var(--accent-color); background: rgba(216, 70, 19, 0.1);">
+            <div style="display: flex; align-items: center; gap: 0.8em; min-width: 0; flex: 1;">
+                <img id="preview-avatar" src="" style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--accent-color); object-fit: cover; flex-shrink: 0;">
+                <div style="display: flex; flex-direction: column; min-width: 0;">
+                    <span class="preview-title-badge" style="font-size: 0.7em; font-weight: 700; text-transform: uppercase; color: var(--accent-color); letter-spacing: 1px;">Vorschau</span>
+                    <span id="preview-name" class="setting-label" style="font-size: 1.1em; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Username</span>
+                </div>
+            </div>
+            <div style="display: flex; gap: 0.5em; flex-shrink: 0; margin-left: 0.5em;">
+                <button class="action-btn" onclick="StopPreview()" style="background-color: transparent; color: var(--danger-color); border: 1px solid var(--danger-color);">Beenden</button>
+                <button class="action-btn" id="preview-next-btn" onclick="NextPreview()" style="background-color: var(--button-color);">Nächster</button>
+                <button class="action-btn" id="preview-raid-btn" onclick="RaidFromPreview()" style="background-color: var(--accent-color); font-weight: bold;">Raid</button>
+            </div>
+        </div>
+
+        <div id="list-wrap">
+            <div class="setting-description" style="text-align: center; margin-top: 2em; opacity: 0.5;">Warte auf Daten...</div>
+        </div>
+    </div>
+
+    <div id="confirm-dialog" class="dialog-wrapper" style="display: none;">
+        <div class="dialog">
+            <button class="dialog-nav-button" onclick="CloseConfirmDialog()">×</button>
+            <div class="title" style="text-align: center;">Raid Bestätigen</div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5em; margin: 1em 0;">
+                <img id="confirm-avatar" src="" style="width: 64px; height: 64px; border-radius: 50%; background: var(--button-color); object-fit: cover;">
+                <div id="confirm-name" class="setting-label" style="font-size: 1.5em;">Username</div>
+                <div id="confirm-game" class="setting-description">Game</div>
+                <div id="confirm-viewers" class="setting-attribute">X Zuschauer</div>
+                <div id="confirm-badges" style="display:flex; gap:0.5em; margin-top:0.5em;"></div>
+            </div>
+            <div style="display: flex; gap: 1em; width: 100%;">
+                <button onclick="CloseConfirmDialog()">Zurück</button>
+                <button id="confirm-preview-btn" onclick="PreviewFromConfirm()" style="background-color: var(--button-color);">Vorschau</button>
+                <button id="confirm-raid-btn" onclick="ConfirmRaid()" style="background-color: var(--accent-color);">Raid Starten</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="countdown-dialog" class="dialog-wrapper" style="display: none;">
+        <div class="dialog">
+            <button class="dialog-nav-button" onclick="CancelRaid()">×</button>
+            <div class="title" style="text-align: center;">Raid wird vorbereitet...</div>
+            <div id="countdown-target-info" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em; margin: 1em 0;">
+                <img id="countdown-avatar" src="" style="width: 64px; height: 64px; border-radius: 50%; background: var(--button-color); object-fit: cover;">
+                <div id="countdown-name" class="setting-label" style="font-size: 1.5em;">Username</div>
+                <div id="countdown-viewers" class="setting-description">Lade Zuschauer...</div>
+            </div>
+            <div id="timer-label" style="text-align: center; font-weight: 900; font-size: 3em; color: var(--accent-color);">01:30</div>
+            <div style="width: 100%; height: 6px; background-color: var(--callout-background); border-radius: 3px; overflow: hidden; margin-bottom: 1em;">
+                <div id="timer-bar" style="width: 100%; height: 100%; background-color: var(--accent-color);"></div>
+            </div>
+            <div style="display: flex; gap: 1em; width: 100%;">
+                <button id="countdown-preview-btn" onclick="ToggleCountdownPreview()" style="background-color: var(--button-color);">Vorschau starten</button>
+                <button onclick="CancelRaid()" style="background-color: var(--danger-color);">Raid abbrechen</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="raid-history-dialog" class="dialog-wrapper" style="display: none;">
+        <div id="raid-history-dialog-content" class="dialog" style="width: 90%; max-width: 600px; height: auto; max-height: 90vh; display: flex; flex-direction: column;">
+            <button class="dialog-nav-button" onclick="ShowHistoryDialog(false)">×</button>
+            <div class="title">Raid Verlauf</div>
+            <div id="history-list" style="display: flex; flex-direction: column; gap: 0.8em; overflow-y: auto; padding-right: 0.5em;"></div>
+        </div>
+    </div>
+
+    <template id="streamer-card-template">
+        <div class="streamer-card callout">
+            <img class="avatar" src="" alt="Avatar">
+            <div class="info">
+                <div class="setting-label name"></div>
+                <div class="setting-description title-text"></div>
+                <div class="setting-attribute game"></div>
+            </div>
+            <div class="viewers" style="margin-left: auto;"></div>
+            <div class="actions">
+                <button class="action-btn preview-btn" style="background-color: var(--button-color); border: 1px solid var(--border);" title="Vorschau">Vorschau</button>
+                <button class="action-btn raid-btn" style="background-color: var(--accent-color);" title="Raid vorbereiten">Raid</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="./script.js"></script>
+</body>
+</html>
