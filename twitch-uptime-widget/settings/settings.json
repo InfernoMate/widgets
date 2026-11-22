@@ -1,0 +1,208 @@
+{
+	"settings": [
+		{
+			"id": "font",
+			"label": "Schriftart",
+			"description": "<a href=\"ms-settings:fonts\">Installierte Schriftarten anschauen</a>",
+			"type": "font",
+			"defaultValue": "",
+			"group": "Erscheinungsbild"
+		},
+		{
+			"id": "fontSize",
+			"label": "Schriftgröße",
+			"description": "",
+			"type": "number",
+			"min": 1,
+			"defaultValue": 36,
+			"group": "Erscheinungsbild",
+			"max": 120
+		},
+		{
+			"id": "fontWeight",
+			"label": "Schriftstärke",
+			"description": "",
+			"type": "select",
+			"options": [
+				{
+					"value": "100",
+					"label": "Dünn"
+				},
+				{
+					"value": "200",
+					"label": "Extra Leicht"
+				},
+				{
+					"value": "300",
+					"label": "Leicht"
+				},
+				{
+					"value": "400",
+					"label": "Normal"
+				},
+				{
+					"value": "500",
+					"label": "Medium"
+				},
+				{
+					"value": "600",
+					"label": "Halbfett"
+				},
+				{
+					"value": "700",
+					"label": "Fett"
+				},
+				{
+					"value": "800",
+					"label": "Extra Fett"
+				},
+				{
+					"value": "900",
+					"label": "Schwarz (Besonders Fett)"
+				}
+			],
+			"defaultValue": "700",
+			"group": "Erscheinungsbild"
+		},
+		{
+			"id": "fontColor",
+			"label": "Schriftfarbe",
+			"description": "",
+			"type": "color",
+			"defaultValue": "#ffffff",
+			"group": "Erscheinungsbild"
+		},
+		{
+			"id": "fontOpacity",
+			"label": "Deckkraft der Schrift",
+			"description": "",
+			"type": "number",
+			"min": 0,
+			"max": 1,
+			"step": ".01",
+			"defaultValue": "1",
+			"group": "Erscheinungsbild"
+		},
+		{
+			"id": "textTransform",
+			"label": "Texttransformation",
+			"description": "",
+			"type": "select",
+			"options": [
+				{
+					"value": "none",
+					"label": "Normal"
+				},
+				{
+					"value": "uppercase",
+					"label": "Großbuchstaben"
+				},
+				{
+					"value": "lowercase",
+					"label": "Kleinbuchstaben"
+				},
+				{
+					"value": "capitalize",
+					"label": "Wortanfang groß"
+				}
+			],
+			"defaultValue": "uppercase",
+			"group": "Erscheinungsbild"
+		},
+		{
+			"id": "textAlignment",
+			"label": "Textausrichtung",
+			"description": "",
+			"type": "select",
+			"options": [
+				{
+					"value": "left",
+					"label": "Links"
+				},
+				{
+					"value": "center",
+					"label": "Zentriert"
+				},
+				{
+					"value": "right",
+					"label": "Rechts"
+				}
+			],
+			"defaultValue": "center",
+			"group": "Erscheinungsbild"
+		},
+		{
+			"id": "showTextShadow",
+			"label": "Schatten anzeigen",
+			"description": "",
+			"type": "checkbox",
+			"defaultValue": true,
+			"group": "Erscheinungsbild"
+		},
+		{
+			"id": "username",
+			"label": "Twitch-Kanal",
+			"description": "Leer lassen, um deinen Kanal aus Streamer.bot zu übernehmen",
+			"type": "text",
+			"defaultValue": "",
+			"group": "Allgemein"
+		},
+		{
+			"id": "useCustomFormat",
+			"label": "Eigenes Format verwenden",
+			"description": "Aus: Uptime ausgeschrieben, z. B. „2 Stunden, 5 Minuten, 12 Sekunden“",
+			"type": "checkbox",
+			"defaultValue": false,
+			"group": "Allgemein"
+		},
+		{
+			"id": "seconds",
+			"label": "Sekunden anzeigen",
+			"description": "Gilt für die ausgeschriebene Uptime",
+			"type": "checkbox",
+			"defaultValue": true,
+			"group": "Allgemein"
+		},
+		{
+			"id": "format",
+			"label": "Format",
+			"description": "Beispiele: [Live seit] H:mm:ss, HH[h] mm[m], D [Tage] H [Std.]",
+			"type": "text",
+			"defaultValue": "[Live seit] H:mm:ss",
+			"showIf": "useCustomFormat",
+			"group": "Allgemein"
+		},
+		{
+			"id": "offlineFormat",
+			"label": "Text wenn offline",
+			"description": "N = Kanalname, Text in [eckigen Klammern] wird so angezeigt, wie du ihn schreibst",
+			"type": "text",
+			"defaultValue": "N [ist offline]",
+			"group": "Allgemein"
+		},
+		{
+			"id": "hideWhenOffline",
+			"label": "Ausblenden, wenn offline",
+			"description": "",
+			"type": "checkbox",
+			"defaultValue": false,
+			"group": "Allgemein"
+		},
+		{
+			"id": "address",
+			"label": "Adresse",
+			"description": "Streamer.bot Websocket-Server-Adresse",
+			"type": "text",
+			"defaultValue": "127.0.0.1",
+			"group": "Erweitert"
+		},
+		{
+			"id": "port",
+			"label": "Port",
+			"description": "Streamer.bot Websocket-Server-Port",
+			"type": "text",
+			"defaultValue": "8080",
+			"group": "Erweitert"
+		}
+	]
+}

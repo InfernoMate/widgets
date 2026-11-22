@@ -1,0 +1,78 @@
+{
+    "settings": [
+        {
+            "id": "testWidgetButton",
+            "label": "Test-Emotes senden",
+            "description": "",
+            "type": "button",
+            "callFunction": "testWidget",
+            "group": ""
+        },
+        {
+            "id": "emoteSize",
+            "label": "Emote-Größe",
+            "description": "Größe der Emotes in Pixeln",
+            "type": "number",
+            "min": 1,
+            "defaultValue": 72,
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "maxEmotes",
+            "label": "Maximale Emotes pro Nachricht",
+            "description": "Weitere Emotes einer Chatnachricht werden ignoriert",
+            "type": "number",
+            "min": 1,
+            "defaultValue": 30,
+            "group": "Allgemein"
+        },
+        {
+            "id": "showZoomAnimation",
+            "label": "Zoom",
+            "description": "Emote zoomt an zufälliger Stelle rein und wieder raus",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Animationen möchtest du sehen?"
+        },
+        {
+            "id": "showFadeAnimation",
+            "label": "Einblenden",
+            "description": "Emote blendet an zufälliger Stelle ein und wieder aus",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Animationen möchtest du sehen?"
+        },
+        {
+            "id": "showBubbleAnimation",
+            "label": "Aufsteigen",
+            "description": "Emote steigt von unten wie eine Blase auf",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Animationen möchtest du sehen?"
+        },
+        {
+            "id": "showBounceAnimation",
+            "label": "Hüpfen",
+            "description": "Emote fällt von oben, hüpft über den Boden und verlässt das Bild seitlich",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Welche Animationen möchtest du sehen?"
+        },
+        {
+            "id": "address",
+            "label": "Adresse",
+            "description": "Streamer.bot Websocket-Server-Adresse",
+            "type": "text",
+            "defaultValue": "127.0.0.1",
+            "group": "Erweitert"
+        },
+        {
+            "id": "port",
+            "label": "Port",
+            "description": "Streamer.bot Websocket-Server-Port",
+            "type": "text",
+            "defaultValue": "8080",
+            "group": "Erweitert"
+        }
+    ]
+}

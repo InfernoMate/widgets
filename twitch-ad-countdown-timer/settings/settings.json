@@ -1,0 +1,140 @@
+{
+    "settings": [
+        {
+            "id": "testAd",
+            "label": "Test-Werbung senden",
+            "description": "",
+            "type": "button",
+            "callFunction": "testAd",
+            "group": ""
+        },
+        {
+            "id": "testUpcomingAdWarning",
+            "label": "Test-Warnung für anstehende Werbung senden",
+            "description": "",
+            "type": "button",
+            "callFunction": "testUpcomingAdWarning",
+            "group": ""
+        },
+        {
+            "id": "barColor",
+            "label": "Balkenfarbe",
+            "description": "",
+            "type": "color",
+            "defaultValue": "#d84613",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "barThickness",
+            "label": "Balkendicke",
+            "description": "",
+            "type": "number",
+            "defaultValue": "4",
+            "min": 1,
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "barPosition",
+            "label": "Balkenposition",
+            "description": "",
+            "type": "select",
+            "options": [
+                {
+                    "value": "none",
+                    "label": "Keine"
+                },
+                {
+                    "value": "bottom",
+                    "label": "Unten"
+                },
+                {
+                    "value": "top",
+                    "label": "Oben"
+                },
+                {
+                    "value": "left",
+                    "label": "Links"
+                },
+                {
+                    "value": "right",
+                    "label": "Rechts"
+                }
+            ],
+            "defaultValue": "bottom",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "timerColor",
+            "label": "Timer-Farbe",
+            "description": "",
+            "type": "color",
+            "defaultValue": "#d84613",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "timerPosition",
+            "label": "Timer-Position",
+            "description": "",
+            "type": "select",
+            "options": [
+                {
+                    "value": "none",
+                    "label": "Keine"
+                },
+                {
+                    "value": "top-left",
+                    "label": "Oben Links"
+                },
+                {
+                    "value": "top-right",
+                    "label": "Oben Rechts"
+                },
+                {
+                    "value": "bottom-left",
+                    "label": "Unten Links"
+                },
+                {
+                    "value": "bottom-right",
+                    "label": "Unten Rechts"
+                }
+            ],
+            "defaultValue": "top-left",
+            "group": "Erscheinungsbild"
+        },
+        {
+            "id": "showUpcomingAdWarning",
+            "label": "Warnung für anstehende Werbung anzeigen",
+            "description": "",
+            "type": "checkbox",
+            "defaultValue": true,
+            "group": "Allgemein"
+        },
+        {
+            "id": "warningSeconds",
+            "label": "Warnzeit",
+            "description": "X Sekunden vor der Werbung warnen",
+            "type": "number",
+            "defaultValue": "10",
+            "min": 1,
+            "max": 300,
+            "showIf": "showUpcomingAdWarning",
+            "group": "Allgemein"
+        },
+        {
+            "id": "address",
+            "label": "Adresse",
+            "description": "Streamer.bot Websocket-Server-Adresse",
+            "type": "text",
+            "defaultValue": "127.0.0.1",
+            "group": "Erweitert"
+        },
+        {
+            "id": "port",
+            "label": "Port",
+            "description": "Streamer.bot Websocket-Server-Port",
+            "type": "text",
+            "defaultValue": "8080",
+            "group": "Erweitert"
+        }
+    ]
+}
